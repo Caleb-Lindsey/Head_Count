@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ServicesView : UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     let menuCellID : String = "menuCell"
     
@@ -22,9 +22,6 @@ class ServicesView : UIViewController, UITableViewDataSource, UITableViewDelegat
         super.viewDidLoad()
         
         self.navigationItem.title = "Services"
-        
-        // View Appearance
-        view.backgroundColor = Global.grayColor
         
         // Place Table View
         menu.frame = view.frame

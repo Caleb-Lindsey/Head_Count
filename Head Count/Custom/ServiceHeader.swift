@@ -45,6 +45,13 @@ class ServiceHeader : UIView {
         return button
     }()
     
+    var totalLabel : UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.white
+        label.font = UIFont(name: "DINCondensed-Bold", size: 25)
+        return label
+    }()
+    
     init(frame: CGRect, service: Service) {
         super.init(frame: frame)
         self.service = service
@@ -75,6 +82,11 @@ class ServiceHeader : UIView {
         // Place Message Button
         messageButton.frame = CGRect(x: self.frame.width - 44 - 5, y: self.frame.height - 44 - 5, width: 44, height: 44)
         self.addSubview(messageButton)
+        
+        // Place Total Label
+        totalLabel.frame = CGRect(x: 15, y: self.frame.height - 50, width: self.frame.width / 4, height: 50)
+        totalLabel.text = "Total: \(self.service.getTotal())"
+        self.addSubview(totalLabel)
         
     }
     

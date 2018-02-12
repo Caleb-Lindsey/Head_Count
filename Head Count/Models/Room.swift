@@ -12,5 +12,6 @@ struct Room {
     
     var title : String!
     var headCount : Int = 0
+    var type : String!
     
 }
