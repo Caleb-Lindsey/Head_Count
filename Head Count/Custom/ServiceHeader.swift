@@ -17,7 +17,7 @@ class ServiceHeader : UIView {
         //label.layer.borderColor = UIColor.white.cgColor
         //label.layer.borderWidth = 1
         label.textColor = UIColor.white
-        label.font = UIFont(name: "DINCondensed-Bold", size: 45)
+        label.font = Global.headerFont
         return label
     }()
     
@@ -37,6 +37,12 @@ class ServiceHeader : UIView {
         label.textColor = UIColor.white
         label.font = UIFont(name: "Helvetica", size: 18)
         return label
+    }()
+    
+    var emailButton : UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "email_icon"), for: .normal)
+        return button
     }()
     
     var messageButton : UIButton = {
@@ -79,8 +85,12 @@ class ServiceHeader : UIView {
         dateLabel.text = "1/21/18"
         self.addSubview(dateLabel)
         
+        // Place Email Button
+        emailButton.frame = CGRect(x: self.frame.width - 44 - 5, y: self.frame.height - 44 - 5, width: 44, height: 44)
+        self.addSubview(emailButton)
+        
         // Place Message Button
-        messageButton.frame = CGRect(x: self.frame.width - 44 - 5, y: self.frame.height - 44 - 5, width: 44, height: 44)
+        messageButton.frame = CGRect(x: emailButton.frame.origin.x - 44 - 5, y: emailButton.frame.origin.y, width: 44, height: 44)
         self.addSubview(messageButton)
         
         // Place Total Label

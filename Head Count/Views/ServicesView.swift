@@ -27,19 +27,27 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         menu.frame = view.frame
         menu.dataSource = self
         menu.delegate = self
+        menu.register(NewServiceCell.self, forCellReuseIdentifier: "newCellID")
         menu.register(ServiceCell.self, forCellReuseIdentifier: menuCellID)
         view.addSubview(menu)
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Global.arrayOfServices.count
+        return Global.arrayOfServices.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let thisService : Service = Global.arrayOfServices[indexPath.row]
-        let cell : ServiceCell = ServiceCell(style: UITableViewCellStyle.default, reuseIdentifier: menuCellID, title: thisService.title, counter: thisService.counter, destination: UIViewController())
-        return cell
+        
+        if indexPath.row == 0 {
+            let cell : NewServiceCell = NewServiceCell(style: UITableViewCellStyle.default, reuseIdentifier: "newCellID")
+            return cell
+        } else {
+            let thisService : Service = Global.arrayOfServices[indexPath.row - 1]
+            let cell : ServiceCell = ServiceCell(style: UITableViewCellStyle.default, reuseIdentifier: menuCellID, title: thisService.title, counter: thisService.counter, destination: UIViewController())
+            return cell
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -51,8 +59,11 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(ServiceView(nibName: nil, bundle: nil, service: Global.arrayOfServices[indexPath.row]), animated: true)
-        
+        if indexPath.row == 0 {
+            self.navigationController?.pushViewController(NewServiceView(), animated: true)
+        } else {
+            self.navigationController?.pushViewController(ServiceView(nibName: nil, bundle: nil, service: Global.arrayOfServices[indexPath.row - 1]), animated: true)
+        }
     }
     
 }

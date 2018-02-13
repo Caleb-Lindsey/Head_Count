@@ -10,6 +10,8 @@
 		2E2AB7912030ECD8000F9821 /* ServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2AB7902030ECD8000F9821 /* ServiceView.swift */; };
 		2E51D484203113160065A602 /* HeadCountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51D483203113160065A602 /* HeadCountVC.swift */; };
 		2E51D486203114EB0065A602 /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51D485203114EB0065A602 /* RoomCell.swift */; };
+		2E51D488203231770065A602 /* NewServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51D487203231770065A602 /* NewServiceCell.swift */; };
+		2E51D48A20323C270065A602 /* NewServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51D48920323C270065A602 /* NewServiceView.swift */; };
 		2E87A222200AA97300F43AE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87A221200AA97300F43AE2 /* AppDelegate.swift */; };
 		2E87A22A200AA97300F43AE2 /* Head_Count.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E87A228200AA97300F43AE2 /* Head_Count.xcdatamodeld */; };
 		2E87A22C200AA97300F43AE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E87A22B200AA97300F43AE2 /* Assets.xcassets */; };
@@ -46,18 +48,20 @@
 		2E2AB7902030ECD8000F9821 /* ServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceView.swift; sourceTree = "<group>"; };
 		2E51D483203113160065A602 /* HeadCountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadCountVC.swift; sourceTree = "<group>"; };
 		2E51D485203114EB0065A602 /* RoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
-		2E87A21E200AA97300F43AE2 /* Head Count.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Head Count.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E51D487203231770065A602 /* NewServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServiceCell.swift; sourceTree = "<group>"; };
+		2E51D48920323C270065A602 /* NewServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServiceView.swift; sourceTree = "<group>"; };
 		2E87A221200AA97300F43AE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E87A229200AA97300F43AE2 /* Head_Count.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Head_Count.xcdatamodel; sourceTree = "<group>"; };
 		2E87A22B200AA97300F43AE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E87A22E200AA97300F43AE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E87A230200AA97300F43AE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2E87A235200AA97300F43AE2 /* Head CountTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Head CountTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E87A239200AA97300F43AE2 /* Head_CountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Head_CountTests.swift; sourceTree = "<group>"; };
 		2E87A23B200AA97300F43AE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2E87A240200AA97300F43AE2 /* Head CountUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Head CountUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E87A244200AA97300F43AE2 /* Head_CountUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Head_CountUITests.swift; sourceTree = "<group>"; };
 		2E87A246200AA97300F43AE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2ED67375203270130052D7E6 /* Head CountTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Head CountTests.xctest"; path = "/Users/Cal/Documents/Programming/xCode/Head Count/build/Debug-iphoneos/Head CountTests.xctest"; sourceTree = "<absolute>"; };
+		2ED67376203270130052D7E6 /* Head CountUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = "Head CountUITests.xctest"; path = "/Users/Cal/Documents/Programming/xCode/Head Count/build/Debug-iphoneos/Head CountUITests.xctest"; sourceTree = "<absolute>"; };
+		2ED67377203270A00052D7E6 /* Head Count.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Head Count.app"; path = "/Users/Cal/Documents/Programming/xCode/Head Count/build/Debug-iphoneos/Head Count.app"; sourceTree = "<absolute>"; };
 		2ED9145D2019031A009870FB /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		2ED9145F201903B3009870FB /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		2ED91461201906D5009870FB /* NewServiceHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServiceHeader.swift; sourceTree = "<group>"; };
@@ -98,18 +102,7 @@
 				2E87A220200AA97300F43AE2 /* Head Count */,
 				2E87A238200AA97300F43AE2 /* Head CountTests */,
 				2E87A243200AA97300F43AE2 /* Head CountUITests */,
-				2E87A21F200AA97300F43AE2 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		2E87A21F200AA97300F43AE2 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				2E87A21E200AA97300F43AE2 /* Head Count.app */,
-				2E87A235200AA97300F43AE2 /* Head CountTests.xctest */,
-				2E87A240200AA97300F43AE2 /* Head CountUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		2E87A220200AA97300F43AE2 /* Head Count */ = {
@@ -160,6 +153,7 @@
 			children = (
 				2EEC14F420152B2500DB9449 /* ServicesView.swift */,
 				2E2AB7902030ECD8000F9821 /* ServiceView.swift */,
+				2E51D48920323C270065A602 /* NewServiceView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				2EFA7C802017A0D500BA6044 /* ServiceCell.swift */,
+				2E51D487203231770065A602 /* NewServiceCell.swift */,
 				2EE934032030EF7B00BCA562 /* ServiceHeader.swift */,
 				2ED91461201906D5009870FB /* NewServiceHeader.swift */,
 				2E51D483203113160065A602 /* HeadCountVC.swift */,
@@ -193,16 +188,19 @@
 			);
 			name = "Head Count";
 			productName = "Head Count";
-			productReference = 2E87A21E200AA97300F43AE2 /* Head Count.app */;
+			productReference = 2ED67377203270A00052D7E6 /* Head Count.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2E87A234200AA97300F43AE2 /* Head CountTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2E87A24C200AA97300F43AE2 /* Build configuration list for PBXNativeTarget "Head CountTests" */;
 			buildPhases = (
+				EAD0C486698D2D068262505C /* [CP] Check Pods Manifest.lock */,
 				2E87A231200AA97300F43AE2 /* Sources */,
 				2E87A232200AA97300F43AE2 /* Frameworks */,
 				2E87A233200AA97300F43AE2 /* Resources */,
+				8CF332D56E3BBB089802DDFF /* [CP] Embed Pods Frameworks */,
+				E99785BAD78D74831398E86D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -211,16 +209,19 @@
 			);
 			name = "Head CountTests";
 			productName = "Head CountTests";
-			productReference = 2E87A235200AA97300F43AE2 /* Head CountTests.xctest */;
+			productReference = 2ED67375203270130052D7E6 /* Head CountTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		2E87A23F200AA97300F43AE2 /* Head CountUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2E87A24F200AA97300F43AE2 /* Build configuration list for PBXNativeTarget "Head CountUITests" */;
 			buildPhases = (
+				9C9D4A32886BBCD20EBCD7EB /* [CP] Check Pods Manifest.lock */,
 				2E87A23C200AA97300F43AE2 /* Sources */,
 				2E87A23D200AA97300F43AE2 /* Frameworks */,
 				2E87A23E200AA97300F43AE2 /* Resources */,
+				1C170FE499327902BE4208DB /* [CP] Embed Pods Frameworks */,
+				6883453C65C7F77653A4B9EC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -229,7 +230,7 @@
 			);
 			name = "Head CountUITests";
 			productName = "Head CountUITests";
-			productReference = 2E87A240200AA97300F43AE2 /* Head CountUITests.xctest */;
+			productReference = 2ED67376203270130052D7E6 /* Head CountUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -267,7 +268,7 @@
 				Base,
 			);
 			mainGroup = 2E87A215200AA97300F43AE2;
-			productRefGroup = 2E87A21F200AA97300F43AE2 /* Products */;
+			productRefGroup = 2E87A215200AA97300F43AE2;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -304,6 +305,105 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C170FE499327902BE4208DB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Head CountUITests/Pods-Head CountUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6883453C65C7F77653A4B9EC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Head CountUITests/Pods-Head CountUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8CF332D56E3BBB089802DDFF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Head CountTests/Pods-Head CountTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9C9D4A32886BBCD20EBCD7EB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Head CountUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E99785BAD78D74831398E86D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Head CountTests/Pods-Head CountTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EAD0C486698D2D068262505C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Head CountTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2E87A21A200AA97300F43AE2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -316,6 +416,8 @@
 				2ED91460201903B3009870FB /* Room.swift in Sources */,
 				2EEC14F520152B2500DB9449 /* ServicesView.swift in Sources */,
 				2EFA7C7E20179D0200BA6044 /* DataSource.swift in Sources */,
+				2E51D48A20323C270065A602 /* NewServiceView.swift in Sources */,
+				2E51D488203231770065A602 /* NewServiceCell.swift in Sources */,
 				2ED91462201906D5009870FB /* NewServiceHeader.swift in Sources */,
 				2E87A222200AA97300F43AE2 /* AppDelegate.swift in Sources */,
 				2E2AB7912030ECD8000F9821 /* ServiceView.swift in Sources */,
@@ -421,6 +523,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_REFLECTION_METADATA_LEVEL = none;
 			};
 			name = Debug;
 		};
@@ -470,6 +573,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_REFLECTION_METADATA_LEVEL = none;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -484,6 +588,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.KlubCo.Head-Count";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_REFLECTION_METADATA_LEVEL = all;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -499,6 +604,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.KlubCo.Head-Count";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_REFLECTION_METADATA_LEVEL = all;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

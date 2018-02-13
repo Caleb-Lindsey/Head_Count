@@ -11,7 +11,6 @@ import UIKit
 class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     var service : Service!
-    var arrayOfTypes : [String] = [""]
     var cellID : String = "roomCell"
     
     var roomTableView : UITableView = {
@@ -25,7 +24,6 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, service: Service) {
         super.init(nibName: nil, bundle: nil)
         self.service = service
-        self.arrayOfTypes.append(contentsOf: self.service.getArrayOfTypes())
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,7 +33,7 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Smithfield"
+        self.navigationItem.title = service.location
         
         let newLayer = CAGradientLayer()
         newLayer.colors = [Global.grayColor.cgColor, UIColor.white.cgColor]
@@ -67,29 +65,14 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return self.view.frame.height / 3
-        } else {
-            return 30
-        }
+        return self.view.frame.height / 3
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            let headerView : ServiceHeader = ServiceHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height / 3), service: self.service)
-            return headerView
-        } else {
-            return nil
-        }
+        
+        let headerView : ServiceHeader = ServiceHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height / 3), service: self.service)
+        return headerView
 
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return arrayOfTypes.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return arrayOfTypes[section]
     }
     
 }

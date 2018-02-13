@@ -14,13 +14,15 @@ class Service {
     var date : Date!
     var rooms : [Room] = [Room]()
     var counter : String!
+    var location : String!
     
-    init(title: String, date: Date, rooms: [Room], counter: String) {
+    init(title: String, date: Date, rooms: [Room], counter: String, location: String) {
         
         self.title = title
         self.date = date
         self.rooms = rooms
         self.counter = counter
+        self.location = location
         
     }
     
@@ -61,8 +63,9 @@ class Service {
             found = false
             
         }
-        print(arrayOfTypes)
+        
         return arrayOfTypes
+        
     }
     
 }

@@ -18,22 +18,22 @@ class ServiceCell : UITableViewCell {
     let backView : UIView = {
         let view = UIView()
         view.backgroundColor = Global.offWhiteColor
-        view.layer.cornerRadius = 4
-        view.layer.borderWidth = 0.5
-        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.cornerRadius = 3
+        //view.layer.borderWidth = 0.5
+        //view.layer.borderColor = UIColor.white.cgColor
         return view
     }()
     
     let titleLabel : UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.white
+        label.textColor = Global.grayColor
         //label.layer.borderWidth = 0.5
         return label
     }()
     
     let dateLabel : UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.white
+        label.textColor = Global.grayColor
         label.textAlignment = .right
         //label.layer.borderWidth = 0.5
         return label
@@ -41,7 +41,7 @@ class ServiceCell : UITableViewCell {
     
     let counterLabel : UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.white
+        label.textColor = Global.grayColor
         return label
     }()
     
@@ -81,13 +81,13 @@ class ServiceCell : UITableViewCell {
         
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        if selected {
-            backView.backgroundColor = UIColor.lightGray
-        } else {
-            backView.backgroundColor = Global.offWhiteColor
-        }
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        if selected {
+//            backView.backgroundColor = UIColor.lightGray
+//        } else {
+//            backView.backgroundColor = UIColor.white
+//        }
+//    }
     
 }
 

@@ -11,7 +11,8 @@ struct Global {
     
     static var arrayOfServices : [Service] = [Service]()
     static var grayColor = UIColor(red: 20/255.0, green: 20/255.0, blue: 20/255.0, alpha: 1)
-    static var offWhiteColor = UIColor(red: 175/255.0, green: 175/255.0, blue: 175/255.0, alpha: 1)
+    static var offWhiteColor = UIColor(red: 200/255.0, green: 200/255.0, blue: 200/255.0, alpha: 1)
+    static var headerFont : UIFont = UIFont(name: "DINCondensed-Bold", size: 45)!
     
 }
 
@@ -30,7 +31,7 @@ class DataSource {
         let room9 = Room(title: "A/V Room", headCount: 8, type: "Main")
         let room10 = Room(title: "Fire Core", headCount: 6, type: "Main")
         
-        let service1 = Service(title: "Sunday 9:30am", date: Date(), rooms: [room1, room2, room3, room4, room5, room6, room7, room8, room9, room10], counter: "Caleb Lindsey")
+        let service1 = Service(title: "Sunday 9:30am", date: Date(), rooms: [room1, room2, room3, room4, room5, room6, room7, room8, room9, room10], counter: "Caleb Lindsey", location: "Smithfield")
         
         Global.arrayOfServices = [service1]
 
@@ -45,7 +46,7 @@ class DataSource {
         let room19 = Room(title: "A/V Room", headCount: 8, type: "Main")
         let room20 = Room(title: "Fire Core", headCount: 6, type: "Main")
         
-        let service2 = Service(title: "Sunday 11:30am", date: Date(), rooms: [room11, room12, room13, room14, room15, room16, room17, room18, room19, room20], counter: "Fernando Medina")
+        let service2 = Service(title: "Sunday 11:30am", date: Date(), rooms: [room11, room12, room13, room14, room15, room16, room17, room18, room19, room20], counter: "Fernando Medina", location: "Fall River")
         
         Global.arrayOfServices.append(service2)
 
