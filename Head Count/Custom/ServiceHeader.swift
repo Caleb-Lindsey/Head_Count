@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import MessageUI
 
-class ServiceHeader : UIView {
+class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate {
     
     var service : Service!
+    var viewController : UIViewController!
 
     var titleLabel : UILabel = {
         let label = UILabel()
@@ -48,6 +50,7 @@ class ServiceHeader : UIView {
     var messageButton : UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "messages_icon"), for: .normal)
+        button.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         return button
     }()
     
@@ -58,9 +61,10 @@ class ServiceHeader : UIView {
         return label
     }()
     
-    init(frame: CGRect, service: Service) {
+    init(frame: CGRect, service: Service, controller: UIViewController) {
         super.init(frame: frame)
         self.service = service
+        self.viewController = controller
         self.backgroundColor = Global.grayColor
     }
     
@@ -99,6 +103,26 @@ class ServiceHeader : UIView {
         self.addSubview(totalLabel)
         
     }
+    
+    @objc func sendMessage() {
+        
+        if (MFMessageComposeViewController.canSendText()) {
+            let controller = MFMessageComposeViewController()
+            controller.body = "Here's the count for \((titleLabel.text)!).\nCounter: \((counterLabel.text)!)\nDate: \((dateLabel.text)!)"
+            controller.subject = titleLabel.text
+            controller.recipients = []
+            //controller.addAttachmentData("", typeIdentifier: "", filename: "")
+            controller.messageComposeDelegate = self
+            viewController.present(controller, animated: true, completion: nil)
+        }
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        //... handle sms screen actions
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    
     
 }
 

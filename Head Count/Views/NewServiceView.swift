@@ -11,10 +11,12 @@ import UIKit
 class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     var cellID : String = "cellID"
+    var arrayOfNewRooms : [Room] = [Room]()
     
     var newServiceTable : UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = UIColor.clear
+        tableView.showsVerticalScrollIndicator = false
         return tableView
     }()
     
@@ -23,8 +25,12 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         
         self.navigationItem.title = "New Event"
         
+        if arrayOfNewRooms.count < 10 {
+            fillRoomsToTen()
+        }
+        
         let newLayer = CAGradientLayer()
-        newLayer.colors = [Global.grayColor.cgColor, UIColor.white.cgColor]
+        newLayer.colors = [Global.grayColor.cgColor, UIColor.white.cgColor, Global.grayColor.cgColor]
         newLayer.frame = view.frame
         newLayer.frame.origin.y = (self.navigationController?.navigationBar.frame.maxY)!
         self.view.layer.insertSublayer(newLayer, at: 0)
@@ -33,18 +39,23 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         newServiceTable.frame = view.frame
         newServiceTable.delegate = self
         newServiceTable.dataSource = self
-        newServiceTable.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
+        newServiceTable.register(NewRoomCell.self, forCellReuseIdentifier: cellID)
         view.addSubview(newServiceTable)
+        
+        self.newServiceTable.tableFooterView = NewServiceFooter(frame: CGRect(x: 0, y: 0, width: newServiceTable.frame.width, height: 65))
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        
+        //let remainingHeight : CGFloat = newServiceTable.frame.height - (self.view.frame.height / 3) - 65 - CGFloat((arrayOfNewRooms.count * 65))
+        
+        return arrayOfNewRooms.count
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : UITableViewCell = newServiceTable.dequeueReusableCell(withIdentifier: cellID)!
-        cell.textLabel?.text = "hello"
+        let cell : NewRoomCell = NewRoomCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID, room: arrayOfNewRooms[indexPath.row])
         return cell
     }
     
@@ -60,6 +71,17 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         let newServiceHeader : NewServiceHeader = NewServiceHeader()
         return newServiceHeader
     }
+    
+    func fillRoomsToTen() {
+        
+        while arrayOfNewRooms.count < 10 {
+            let newRoom : Room = Room(title: "", headCount: 0)
+            arrayOfNewRooms.append(newRoom)
+        }
+        
+    }
+    
+    
     
 }
 

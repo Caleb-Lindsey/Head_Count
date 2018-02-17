@@ -10,8 +10,8 @@ import UIKit
 
 struct Room {
     
-    var title : String!
+    var title : String = ""
     var headCount : Int = 0
-    var type : String!
+    //var type : String!
     
 }

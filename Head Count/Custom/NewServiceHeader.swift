@@ -31,6 +31,20 @@ class NewServiceHeader : UIView {
     var dateButton : UIButton = {
         let button = UIButton()
         button.setTitle("1/21/18", for: .normal)
+        button.tintColor = UIColor.white
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 1
+        return button
+    }()
+    
+    var useTapper : UIButton = {
+        let button = UIButton()
+        button.setTitle("Use Tapper", for: .normal)
+        button.tintColor = UIColor.white
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 0.5
+        button.layer.cornerRadius = 4
+        button.titleLabel?.textAlignment = .center
         return button
     }()
     
@@ -56,6 +70,10 @@ class NewServiceHeader : UIView {
         // Place Location Field
         locationField.frame = CGRect(x: 15, y: counterField.frame.maxY + 5, width: counterField.frame.width, height: counterField.frame.height)
         self.addSubview(locationField)
+        
+        // Place Use Tapper Button
+        useTapper.frame = CGRect(x: self.frame.width / 2, y: locationField.frame.maxY + 5, width: self.frame.width / 2 - 15, height: locationField.frame.height)
+        self.addSubview(useTapper)
         
     }
     

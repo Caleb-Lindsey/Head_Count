@@ -13,6 +13,8 @@
 		2E51D486203114EB0065A602 /* RoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51D485203114EB0065A602 /* RoomCell.swift */; };
 		2E51D488203231770065A602 /* NewServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51D487203231770065A602 /* NewServiceCell.swift */; };
 		2E51D48A20323C270065A602 /* NewServiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E51D48920323C270065A602 /* NewServiceView.swift */; };
+		2E8656582035210C00CA856B /* NewServiceFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8656572035210C00CA856B /* NewServiceFooter.swift */; };
+		2E8740E62033C10600740F7A /* NewRoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8740E52033C10600740F7A /* NewRoomCell.swift */; };
 		2E87A222200AA97300F43AE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87A221200AA97300F43AE2 /* AppDelegate.swift */; };
 		2E87A22A200AA97300F43AE2 /* Head_Count.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2E87A228200AA97300F43AE2 /* Head_Count.xcdatamodeld */; };
 		2E87A22C200AA97300F43AE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E87A22B200AA97300F43AE2 /* Assets.xcassets */; };
@@ -55,6 +57,8 @@
 		2E51D485203114EB0065A602 /* RoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomCell.swift; sourceTree = "<group>"; };
 		2E51D487203231770065A602 /* NewServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServiceCell.swift; sourceTree = "<group>"; };
 		2E51D48920323C270065A602 /* NewServiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServiceView.swift; sourceTree = "<group>"; };
+		2E8656572035210C00CA856B /* NewServiceFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServiceFooter.swift; sourceTree = "<group>"; };
+		2E8740E52033C10600740F7A /* NewRoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRoomCell.swift; sourceTree = "<group>"; };
 		2E87A221200AA97300F43AE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E87A229200AA97300F43AE2 /* Head_Count.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Head_Count.xcdatamodel; sourceTree = "<group>"; };
 		2E87A22B200AA97300F43AE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -170,9 +174,11 @@
 				2E51D487203231770065A602 /* NewServiceCell.swift */,
 				2EE934032030EF7B00BCA562 /* ServiceHeader.swift */,
 				2ED91461201906D5009870FB /* NewServiceHeader.swift */,
-				2E51D483203113160065A602 /* HeadCountVC.swift */,
 				2E51D485203114EB0065A602 /* RoomCell.swift */,
+				2E8740E52033C10600740F7A /* NewRoomCell.swift */,
+				2E51D483203113160065A602 /* HeadCountVC.swift */,
 				2E37521F203293660055A3A9 /* CustomTextField.swift */,
+				2E8656572035210C00CA856B /* NewServiceFooter.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -418,6 +424,7 @@
 				2EE934042030EF7B00BCA562 /* ServiceHeader.swift in Sources */,
 				2E87A22A200AA97300F43AE2 /* Head_Count.xcdatamodeld in Sources */,
 				2EFA7C812017A0D500BA6044 /* ServiceCell.swift in Sources */,
+				2E8740E62033C10600740F7A /* NewRoomCell.swift in Sources */,
 				2E51D484203113160065A602 /* HeadCountVC.swift in Sources */,
 				2ED91460201903B3009870FB /* Room.swift in Sources */,
 				2EEC14F520152B2500DB9449 /* ServicesView.swift in Sources */,
@@ -427,6 +434,7 @@
 				2ED91462201906D5009870FB /* NewServiceHeader.swift in Sources */,
 				2E87A222200AA97300F43AE2 /* AppDelegate.swift in Sources */,
 				2E2AB7912030ECD8000F9821 /* ServiceView.swift in Sources */,
+				2E8656582035210C00CA856B /* NewServiceFooter.swift in Sources */,
 				2E51D486203114EB0065A602 /* RoomCell.swift in Sources */,
 				2ED9145E2019031A009870FB /* Service.swift in Sources */,
 				2E375220203293660055A3A9 /* CustomTextField.swift in Sources */,

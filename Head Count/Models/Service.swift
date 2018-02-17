@@ -38,35 +38,35 @@ class Service {
         
     }
     
-    func getArrayOfTypes() -> [String] {
-        
-        var arrayOfTypes = [String]()
-        var found : Bool = false
-        
-        for thisRoom in self.rooms {
-            
-            for thisType in arrayOfTypes {
-                if thisRoom.type == thisType {
-                    found = true
-                    break
-                }
-            }
-            
-            if !found {
-                if arrayOfTypes == [] {
-                    arrayOfTypes = [thisRoom.type]
-                } else {
-                    arrayOfTypes.append(thisRoom.type)
-                }
-            }
-            
-            found = false
-            
-        }
-        
-        return arrayOfTypes
-        
-    }
+//    func getArrayOfTypes() -> [String] {
+//
+//        var arrayOfTypes = [String]()
+//        var found : Bool = false
+//
+//        for thisRoom in self.rooms {
+//
+//            for thisType in arrayOfTypes {
+//                if thisRoom.type == thisType {
+//                    found = true
+//                    break
+//                }
+//            }
+//
+//            if !found {
+//                if arrayOfTypes == [] {
+//                    arrayOfTypes = [thisRoom.type]
+//                } else {
+//                    arrayOfTypes.append(thisRoom.type)
+//                }
+//            }
+//
+//            found = false
+//
+//        }
+//
+//        return arrayOfTypes
+//
+//    }
     
 }
 
