@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewRoomCell : UITableViewCell {
+class NewRoomCell : UITableViewCell, UITextFieldDelegate {
     
     var room : Room!
     let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
@@ -16,6 +16,7 @@ class NewRoomCell : UITableViewCell {
     var roomtitle : UITextField = {
         let textField = UITextField()
         textField.placeholder = "Room Title"
+        textField.returnKeyType = UIReturnKeyType.done
         return textField
     }()
     
@@ -48,10 +49,12 @@ class NewRoomCell : UITableViewCell {
         roomtitle.leftView = paddingView
         roomtitle.leftViewMode = .always
         roomtitle.text = room.title
+        roomtitle.delegate = self
         contentView.addSubview(roomtitle)
         
         // Place Room Count
         roomCount.frame = CGRect(x: roomtitle.frame.maxX, y: 0, width: contentView.frame.width * (1/4), height: contentView.frame.height)
+        roomCount.delegate = self
         if room.headCount > 0 {
             roomCount.text = "\(room.headCount)"
         }
@@ -59,7 +62,23 @@ class NewRoomCell : UITableViewCell {
         
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        if textField == roomtitle {
+            self.room.title = roomtitle.text!
+        } else {
+            if roomCount.text != "" {
+                self.room.headCount = Int(roomCount.text!)!
+            }
+            
+        }
+        
+    }
     
 }
 

@@ -38,6 +38,25 @@ class Service {
         
     }
     
+    func formatForDelivery() -> String {
+        var formattedService : String = ""
+        
+        let greeting : String = "Here's the count for \(title!).\nCounter: \(counter!)\nDate: 1/21/18\n\n"
+        formattedService += greeting
+        
+        for thisRoom in self.rooms {
+            
+            let line : String = "     • \(thisRoom.title): \(thisRoom.headCount)\n\n"
+            formattedService += line
+        }
+        
+        let total : String = "TOTAL: \(self.getTotal())"
+        formattedService += total
+        
+        return formattedService
+        
+    }
+    
 //    func getArrayOfTypes() -> [String] {
 //
 //        var arrayOfTypes = [String]()

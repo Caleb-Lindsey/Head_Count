@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewServiceHeader : UIView {
+class NewServiceHeader : UIView, UITextFieldDelegate {
     
     var titleField : CustomTextField = {
         let textField = CustomTextField()
@@ -61,14 +61,17 @@ class NewServiceHeader : UIView {
         
         // Place Title Field
         titleField.frame = CGRect(x: 15, y: 15, width: self.frame.width - 30, height: self.frame.height / 5)
+        titleField.delegate = self
         self.addSubview(titleField)
         
         // Place Counter Field
         counterField.frame = CGRect(x: 15, y: titleField.frame.maxY + 5, width: titleField.frame.width, height: titleField.frame.height)
+        counterField.delegate = self
         self.addSubview(counterField)
         
         // Place Location Field
         locationField.frame = CGRect(x: 15, y: counterField.frame.maxY + 5, width: counterField.frame.width, height: counterField.frame.height)
+        locationField.delegate = self
         self.addSubview(locationField)
         
         // Place Use Tapper Button
@@ -76,6 +79,17 @@ class NewServiceHeader : UIView {
         self.addSubview(useTapper)
         
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return false
+    }
+    
+    
     
 }
 

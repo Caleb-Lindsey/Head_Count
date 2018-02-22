@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate {
+class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate {
     
     var service : Service!
     var viewController : UIViewController!
@@ -44,6 +44,7 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate {
     var emailButton : UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "email_icon"), for: .normal)
+        button.addTarget(self, action: #selector(sendEmail), for: .touchUpInside)
         return button
     }()
     
@@ -108,7 +109,7 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate {
         
         if (MFMessageComposeViewController.canSendText()) {
             let controller = MFMessageComposeViewController()
-            controller.body = "Here's the count for \((titleLabel.text)!).\nCounter: \((counterLabel.text)!)\nDate: \((dateLabel.text)!)"
+            controller.body = self.service.formatForDelivery()
             controller.subject = titleLabel.text
             controller.recipients = []
             //controller.addAttachmentData("", typeIdentifier: "", filename: "")
@@ -117,9 +118,26 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate {
         }
     }
     
+    @objc func sendEmail() {
+        
+        let mailController : MFMailComposeViewController = MFMailComposeViewController()
+        mailController.mailComposeDelegate = self
+        mailController.setSubject("Count: \(titleLabel.text!)")
+        mailController.setMessageBody(self.service.formatForDelivery(), isHTML: false)
+        
+        self.viewController.present(mailController, animated: true, completion: nil)
+        
+    }
+    
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         //... handle sms screen actions
         viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        controller.dismiss(animated: true, completion: nil)
+        
     }
     
     

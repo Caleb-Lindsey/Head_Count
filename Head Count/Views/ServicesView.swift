@@ -21,7 +21,7 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Services"
+        self.navigationItem.title = "Events"
         
         // Place Table View
         menu.frame = view.frame

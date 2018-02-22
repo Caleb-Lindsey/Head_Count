@@ -8,10 +8,15 @@
 
 import UIKit
 
-struct Room {
+class Room {
     
     var title : String = ""
     var headCount : Int = 0
     //var type : String!
+    
+    init(title: String, headCount: Int) {
+        self.title = title
+        self.headCount = headCount
+    }
     
 }

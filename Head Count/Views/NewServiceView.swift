@@ -42,20 +42,21 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         newServiceTable.register(NewRoomCell.self, forCellReuseIdentifier: cellID)
         view.addSubview(newServiceTable)
         
-        self.newServiceTable.tableFooterView = NewServiceFooter(frame: CGRect(x: 0, y: 0, width: newServiceTable.frame.width, height: 65))
+        self.newServiceTable.tableFooterView = NewServiceFooter(frame: CGRect(x: 0, y: 0, width: newServiceTable.frame.width, height: 65), viewController: self, tableView: newServiceTable,arrayOfRooms: arrayOfNewRooms)
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        //let remainingHeight : CGFloat = newServiceTable.frame.height - (self.view.frame.height / 3) - 65 - CGFloat((arrayOfNewRooms.count * 65))
-        
         return arrayOfNewRooms.count
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : NewRoomCell = NewRoomCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID, room: arrayOfNewRooms[indexPath.row])
+        cell.roomtitle.text = arrayOfNewRooms[indexPath.row].title
+        if arrayOfNewRooms[indexPath.row].headCount != 0 {
+            cell.roomCount.text = "\(arrayOfNewRooms[indexPath.row].headCount)"
+        }
+        
         return cell
     }
     
@@ -81,7 +82,42 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         
     }
     
+    @objc func addNewRoom() {
+        
+        let newRoom : Room = Room(title: "", headCount: 0)
+        arrayOfNewRooms.append(newRoom)
+        newServiceTable.reloadData()
+        
+        
+    }
     
+    @objc func completeService() {
+        print("Tap")
+//        let alertTitle : String = "Missing Requiered Fields"
+//        var alertMessage : String = ""
+//
+//        if newSegmentField.text == "" {
+//            newSegmentField.layer.borderWidth = 3
+//            newSegmentField.layer.borderColor = UIColor.red.cgColor
+//            alertMessage += "- Segment Name."
+//        } else {
+//            newSegmentField.layer.borderWidth = 0
+//            newSegmentField.layer.borderColor = UIColor.clear.cgColor
+//        }
+//        if tempArray == [] {
+//            rightTableView.layer.borderWidth = 3
+//            rightTableView.layer.borderColor = UIColor.red.cgColor
+//            alertMessage += "\n- Elements."
+//        } else {
+//            rightTableView.layer.borderWidth = 0
+//            rightTableView.layer.borderColor = UIColor.clear.cgColor
+//        }
+//
+//        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+//        self.present(alert, animated: true, completion: nil)
+        
+    }
     
 }
 
