@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Service {
+class Service : Decodable, Encodable {
     
     var title : String!
     var date : Date!

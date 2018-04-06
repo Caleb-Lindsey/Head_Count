@@ -13,6 +13,7 @@ struct Global {
     static var grayColor = UIColor(red: 20/255.0, green: 20/255.0, blue: 20/255.0, alpha: 1)
     static var offWhiteColor = UIColor(red: 200/255.0, green: 200/255.0, blue: 200/255.0, alpha: 1)
     static var headerFont : UIFont = UIFont(name: "DINCondensed-Bold", size: 45)!
+    static var serviceFilePath : String = "HeadCountServices.json"
     
 }
 
@@ -50,6 +51,46 @@ class DataSource {
         
         Global.arrayOfServices.append(service2)
 
+    }
+    
+    func getServiceData() -> [Service] {
+        
+        let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let fileURL = DocumentDirURL.appendingPathComponent(Global.serviceFilePath)
+        
+        do {
+            print("Retrieving Service Data...")
+            let readString : String = try String(contentsOf: fileURL)
+            let newReadString = readString.data(using: .utf8)
+            print(newReadString!)
+            
+            let services = try JSONDecoder().decode([Service].self, from: newReadString!)
+            return services
+            
+        } catch let error as NSError {
+            print("Failed to read from file...", error)
+            return []
+        }
+        
+    }
+    
+    func saveServicesToFile(services: [Service]) {
+        print("Saving Data....")
+        // Encode the array into a json string, and write it to a file
+        let dataToWrite = try? JSONEncoder().encode(services)
+        print(String(data: dataToWrite!, encoding: String.Encoding.utf8)!)
+        print(dataToWrite!)
+        
+        let DocumentDirURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let fileURL = DocumentDirURL.appendingPathComponent(Global.serviceFilePath)
+        
+        do {
+            print("Overwriting file....")
+            try dataToWrite?.write(to: fileURL)
+        } catch let error as NSError {
+            print("Failed to write to the file....", error)
+        }
+        
     }
     
 }

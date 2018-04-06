@@ -12,12 +12,24 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     var cellID : String = "cellID"
     var arrayOfNewRooms : [Room] = [Room]()
+    var dataHandle = DataSource()
     
     var newServiceTable : UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = UIColor.clear
         tableView.showsVerticalScrollIndicator = false
         return tableView
+    }()
+    
+    var newServiceHeader : NewServiceHeader = {
+        let header = NewServiceHeader()
+        return header
+    }()
+    var serviceFooter : NewServiceFooter = {
+        let footer = NewServiceFooter()
+        footer.completeButton.addTarget(self, action: #selector(completeService), for: .touchUpInside)
+        footer.newRoomButton.addTarget(self, action: #selector(addNewRoom), for: .touchUpInside)
+        return footer
     }()
     
     override func viewDidLoad() {
@@ -42,7 +54,8 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         newServiceTable.register(NewRoomCell.self, forCellReuseIdentifier: cellID)
         view.addSubview(newServiceTable)
         
-        self.newServiceTable.tableFooterView = NewServiceFooter(frame: CGRect(x: 0, y: 0, width: newServiceTable.frame.width, height: 65), viewController: self, tableView: newServiceTable,arrayOfRooms: arrayOfNewRooms)
+        self.serviceFooter.frame = CGRect(x: 0, y: 0, width: newServiceTable.frame.width, height: 65)
+        self.newServiceTable.tableFooterView = serviceFooter
         
     }
     
@@ -69,13 +82,12 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let newServiceHeader : NewServiceHeader = NewServiceHeader()
         return newServiceHeader
     }
     
     func fillRoomsToTen() {
         
-        while arrayOfNewRooms.count < 10 {
+        while arrayOfNewRooms.count < 5 {
             let newRoom : Room = Room(title: "", headCount: 0)
             arrayOfNewRooms.append(newRoom)
         }
@@ -88,35 +100,67 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         arrayOfNewRooms.append(newRoom)
         newServiceTable.reloadData()
         
-        
     }
     
     @objc func completeService() {
-        print("Tap")
-//        let alertTitle : String = "Missing Requiered Fields"
-//        var alertMessage : String = ""
-//
-//        if newSegmentField.text == "" {
-//            newSegmentField.layer.borderWidth = 3
-//            newSegmentField.layer.borderColor = UIColor.red.cgColor
-//            alertMessage += "- Segment Name."
-//        } else {
-//            newSegmentField.layer.borderWidth = 0
-//            newSegmentField.layer.borderColor = UIColor.clear.cgColor
-//        }
-//        if tempArray == [] {
-//            rightTableView.layer.borderWidth = 3
-//            rightTableView.layer.borderColor = UIColor.red.cgColor
-//            alertMessage += "\n- Elements."
-//        } else {
-//            rightTableView.layer.borderWidth = 0
-//            rightTableView.layer.borderColor = UIColor.clear.cgColor
-//        }
-//
-//        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-//        self.present(alert, animated: true, completion: nil)
+        let alertTitle : String = "Missing Requiered Fields"
+        var alertMessage : String = ""
+        var allRoomsEmpty : Bool = true
+
+        if newServiceHeader.titleField.text == "" {
+            alertMessage += "- Missing event title."
+        }
         
+        if newServiceHeader.counterField.text == "" {
+            alertMessage += "\n- Missing name of counter."
+        }
+        
+        if newServiceHeader.locationField.text == "" {
+            alertMessage += "\n- Missing event location."
+        }
+        
+        for room in arrayOfNewRooms {
+            if room.title != "" {
+                allRoomsEmpty = false
+            }
+        }
+        
+        if allRoomsEmpty {
+            alertMessage += "\n- No rooms listed."
+        }
+
+        if alertMessage == "" && allRoomsEmpty == false {
+            
+            var arrayOfRoomsInUse : [Room] = []
+            
+            for room in arrayOfNewRooms {
+                if room.title != "" {
+                    arrayOfRoomsInUse.append(room)
+                }
+            }
+            
+            let newService : Service = Service(title: newServiceHeader.titleField.text!, date: Date(), rooms: arrayOfRoomsInUse, counter: newServiceHeader.counterField.text!, location: newServiceHeader.locationField.text!)
+            
+            self.navigationController?.pushViewController(ServiceView(service: newService, isNewService: true), animated: true)
+            
+        } else {
+            let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Edit"
+        navigationItem.backBarButtonItem = backItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Events"
+        navigationItem.backBarButtonItem = backItem
     }
     
 }

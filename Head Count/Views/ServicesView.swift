@@ -11,6 +11,8 @@ import UIKit
 class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     let menuCellID : String = "menuCell"
+    var arrayOfServices : [Service] = []
+    var dataHandle = DataSource()
     
     let menu : UITableView = {
         let tableview = UITableView()
@@ -18,10 +20,17 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         return tableview
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        menu.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationItem.title = "Events"
+        self.navigationItem.setHidesBackButton(true, animated:false)
+        
+        Global.arrayOfServices = dataHandle.getServiceData()
+        menu.reloadData()
         
         // Place Table View
         menu.frame = view.frame
@@ -62,7 +71,7 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         if indexPath.row == 0 {
             self.navigationController?.pushViewController(NewServiceView(), animated: true)
         } else {
-            self.navigationController?.pushViewController(ServiceView(nibName: nil, bundle: nil, service: Global.arrayOfServices[indexPath.row - 1]), animated: true)
+            self.navigationController?.pushViewController(ServiceView(service: Global.arrayOfServices[indexPath.row - 1], isNewService: false), animated: true)
         }
     }
     

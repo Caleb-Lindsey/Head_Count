@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Room {
+class Room : Decodable, Encodable {
     
     var title : String = ""
     var headCount : Int = 0

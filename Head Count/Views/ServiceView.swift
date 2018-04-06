@@ -11,7 +11,9 @@ import UIKit
 class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     var service : Service!
+    var isNewService : Bool = false
     var cellID : String = "roomCell"
+    var dataHandle = DataSource()
     
     var roomTableView : UITableView = {
         let tableView = UITableView()
@@ -21,9 +23,10 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         return tableView
     }()
     
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?, service: Service) {
+    init(service: Service, isNewService: Bool) {
         super.init(nibName: nil, bundle: nil)
         self.service = service
+        self.isNewService = isNewService
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,9 +37,14 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         super.viewDidLoad()
         
         self.navigationItem.title = service.location
+        if isNewService {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(returnToMain))
+        } else {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .done, target: self, action: nil)
+        }
         
         let newLayer = CAGradientLayer()
-        newLayer.colors = [Global.grayColor.cgColor, UIColor.white.cgColor]
+        newLayer.colors = [Global.grayColor.cgColor, UIColor.white.cgColor, Global.grayColor.cgColor]
         newLayer.frame = view.frame
         newLayer.frame.origin.y = (self.navigationController?.navigationBar.frame.maxY)!
         self.view.layer.insertSublayer(newLayer, at: 0)
@@ -73,6 +81,14 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         let headerView : ServiceHeader = ServiceHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height / 3), service: self.service, controller: self)
         return headerView
 
+    }
+    
+    @objc func returnToMain() {
+        
+        Global.arrayOfServices.append(service)
+        dataHandle.saveServicesToFile(services: Global.arrayOfServices)
+        self.navigationController?.pushViewController(ServicesView(), animated: true)
+        
     }
     
 }

@@ -10,8 +10,6 @@ import UIKit
 
 class NewServiceFooter : UIView {
     
-    var viewController : NewServiceView!
-    
     var newRoomButton : UIButton = {
         let button = UIButton()
         button.setTitle("Add Room", for: .normal)
@@ -34,11 +32,9 @@ class NewServiceFooter : UIView {
         return button
     }()
     
-    init(frame: CGRect, viewController: UIViewController, tableView: UITableView, arrayOfRooms: [Room]) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
-        self.viewController = viewController as! NewServiceView
         backgroundColor = Global.grayColor
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,12 +45,10 @@ class NewServiceFooter : UIView {
         
         // Place New Room Button
         newRoomButton.frame = CGRect(x: 15, y: 5, width: self.frame.width / 2 - 15 - 7.5, height: self.frame.height - 10)
-        newRoomButton.addTarget(viewController, action: #selector(viewController.addNewRoom), for: .touchUpInside)
         self.addSubview(newRoomButton)
         
         // Place Complete Button
         completeButton.frame = CGRect(x: newRoomButton.frame.maxX + 15, y: 5, width: newRoomButton.frame.width, height: newRoomButton.frame.height)
-        completeButton.addTarget(viewController, action: #selector(viewController.completeService), for: .touchUpInside)
         self.addSubview(completeButton)
         
     }
