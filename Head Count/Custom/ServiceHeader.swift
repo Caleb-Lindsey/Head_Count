@@ -87,7 +87,7 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate, MFMailComp
         
         // Place Date Label
         dateLabel.frame = CGRect(x: 15, y: counterLabel.frame.maxY, width: counterLabel.frame.width, height: counterLabel.frame.height)
-        dateLabel.text = "1/21/18"
+        dateLabel.text = DataSource().getString(fromDate: service.date)
         self.addSubview(dateLabel)
         
         // Place Email Button

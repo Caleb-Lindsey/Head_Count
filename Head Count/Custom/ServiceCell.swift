@@ -11,7 +11,7 @@ import UIKit
 class ServiceCell : UITableViewCell {
     
     var title : String!
-    var date : String!
+    var date : Date!
     var counter : String!
     var destination : UIViewController!
     
@@ -45,10 +45,10 @@ class ServiceCell : UITableViewCell {
         return label
     }()
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String?, title: String, counter: String, destination: UIViewController) {
+    init(style: UITableViewCellStyle, reuseIdentifier: String?, title: String, counter: String, date: Date, destination: UIViewController) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.title = title
-        self.date = "1/21/18"
+        self.date = date
         self.counter = counter
         self.destination = destination
         self.backgroundColor = UIColor.clear
@@ -72,7 +72,7 @@ class ServiceCell : UITableViewCell {
         backView.addSubview(titleLabel)
         
         dateLabel.frame = CGRect(x: titleLabel.frame.maxX + 15, y: 0, width: titleLabel.frame.width - 15, height: titleLabel.frame.height)
-        dateLabel.text = self.date
+        dateLabel.text = DataSource().getString(fromDate: date)
         backView.addSubview(dateLabel)
         
         counterLabel.frame = CGRect(x: 15, y: titleLabel.frame.maxY, width: dateLabel.frame.width, height: dateLabel.frame.height)

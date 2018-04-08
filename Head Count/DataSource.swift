@@ -64,7 +64,8 @@ class DataSource {
             let newReadString = readString.data(using: .utf8)
             print(newReadString!)
             
-            let services = try JSONDecoder().decode([Service].self, from: newReadString!)
+            var services = try JSONDecoder().decode([Service].self, from: newReadString!)
+            services = orderServiceArrayByDate(array: &services)
             return services
             
         } catch let error as NSError {
@@ -91,6 +92,22 @@ class DataSource {
             print("Failed to write to the file....", error)
         }
         
+    }
+    
+    func orderServiceArrayByDate(array:inout [Service]) -> [Service] {
+        
+        array = array.sorted(by: {
+            $0.date.compare($1.date) == .orderedDescending
+        })
+        
+        return array
+        
+    }
+    
+    func getString(fromDate date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM • dd • yy"
+        return formatter.string(from: date)
     }
     
 }

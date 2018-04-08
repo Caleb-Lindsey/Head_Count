@@ -53,7 +53,7 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
             return cell
         } else {
             let thisService : Service = Global.arrayOfServices[indexPath.row - 1]
-            let cell : ServiceCell = ServiceCell(style: UITableViewCellStyle.default, reuseIdentifier: menuCellID, title: thisService.title, counter: thisService.counter, destination: UIViewController())
+            let cell : ServiceCell = ServiceCell(style: UITableViewCellStyle.default, reuseIdentifier: menuCellID, title: thisService.title, counter: thisService.counter, date: thisService.date, destination: UIViewController())
             return cell
         }
         

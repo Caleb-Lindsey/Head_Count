@@ -139,7 +139,7 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
                 }
             }
             
-            let newService : Service = Service(title: newServiceHeader.titleField.text!, date: Date(), rooms: arrayOfRoomsInUse, counter: newServiceHeader.counterField.text!, location: newServiceHeader.locationField.text!)
+            let newService : Service = Service(title: newServiceHeader.titleField.text!, date: newServiceHeader.datePicker.date, rooms: arrayOfRoomsInUse, counter: newServiceHeader.counterField.text!, location: newServiceHeader.locationField.text!)
             
             self.navigationController?.pushViewController(ServiceView(service: newService, isNewService: true), animated: true)
             

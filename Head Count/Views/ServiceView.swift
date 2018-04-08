@@ -86,6 +86,7 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     @objc func returnToMain() {
         
         Global.arrayOfServices.append(service)
+        Global.arrayOfServices = dataHandle.orderServiceArrayByDate(array: &Global.arrayOfServices)
         dataHandle.saveServicesToFile(services: Global.arrayOfServices)
         self.navigationController?.pushViewController(ServicesView(), animated: true)
         

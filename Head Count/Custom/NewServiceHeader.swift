@@ -28,13 +28,12 @@ class NewServiceHeader : UIView, UITextFieldDelegate {
         return textField
     }()
     
-    var dateButton : UIButton = {
-        let button = UIButton()
-        button.setTitle("1/21/18", for: .normal)
-        button.tintColor = UIColor.white
-        button.layer.borderColor = UIColor.white.cgColor
-        button.layer.borderWidth = 1
-        return button
+    var datePicker : UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .date
+        picker.setValue(UIColor.white, forKeyPath: "textColor")
+        picker.minimumDate = Date()
+        return picker
     }()
     
     override init(frame: CGRect) {
@@ -62,6 +61,10 @@ class NewServiceHeader : UIView, UITextFieldDelegate {
         locationField.frame = CGRect(x: 15, y: counterField.frame.maxY + 5, width: counterField.frame.width, height: counterField.frame.height)
         locationField.delegate = self
         self.addSubview(locationField)
+        
+        // Place Date Picker
+        datePicker.frame = CGRect(x: 15, y: locationField.frame.maxY + 5, width: locationField.frame.width, height: self.frame.height - (locationField.frame.height * 3) - 15 - 5 - 5 - 5)
+        self.addSubview(datePicker)
         
     }
     
