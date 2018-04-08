@@ -32,7 +32,7 @@ class NewServiceHeader : UIView, UITextFieldDelegate {
         let picker = UIDatePicker()
         picker.datePickerMode = .date
         picker.setValue(UIColor.white, forKeyPath: "textColor")
-        picker.minimumDate = Date()
+        picker.maximumDate = Date()
         return picker
     }()
     

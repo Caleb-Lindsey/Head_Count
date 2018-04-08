@@ -11,7 +11,7 @@ import UIKit
 class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     var service : Service!
-    var isNewService : Bool = false
+    var cellIndex : Int!
     var cellID : String = "roomCell"
     var dataHandle = DataSource()
     
@@ -23,10 +23,10 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         return tableView
     }()
     
-    init(service: Service, isNewService: Bool) {
+    init(service: Service, cellIndex: Int) {
         super.init(nibName: nil, bundle: nil)
         self.service = service
-        self.isNewService = isNewService
+        self.cellIndex = cellIndex
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,10 +37,10 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         super.viewDidLoad()
         
         self.navigationItem.title = service.location
-        if isNewService {
+        if cellIndex == 0 {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(returnToMain))
         } else {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .done, target: self, action: nil)
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(returnToMain))
         }
         
         let newLayer = CAGradientLayer()
@@ -85,10 +85,15 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     @objc func returnToMain() {
         
-        Global.arrayOfServices.append(service)
-        Global.arrayOfServices = dataHandle.orderServiceArrayByDate(array: &Global.arrayOfServices)
-        dataHandle.saveServicesToFile(services: Global.arrayOfServices)
-        self.navigationController?.pushViewController(ServicesView(), animated: true)
+        if cellIndex == 0 {
+            Global.arrayOfServices.append(service)
+            Global.arrayOfServices = dataHandle.orderServiceArrayByDate(array: &Global.arrayOfServices)
+            dataHandle.saveServicesToFile(services: Global.arrayOfServices)
+            self.navigationController?.pushViewController(ServicesView(), animated: true)
+        } else {
+            self.navigationController?.pushViewController(NewServiceView(cellIndex: cellIndex), animated: true)
+        }
+    
         
     }
     

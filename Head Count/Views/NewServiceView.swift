@@ -10,9 +10,11 @@ import UIKit
 
 class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
+    var cellIndex : Int!
     var cellID : String = "cellID"
     var arrayOfNewRooms : [Room] = [Room]()
     var dataHandle = DataSource()
+    var serviceToEdit : Service!
     
     var newServiceTable : UITableView = {
         let tableView = UITableView()
@@ -25,6 +27,7 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         let header = NewServiceHeader()
         return header
     }()
+    
     var serviceFooter : NewServiceFooter = {
         let footer = NewServiceFooter()
         footer.completeButton.addTarget(self, action: #selector(completeService), for: .touchUpInside)
@@ -32,14 +35,17 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         return footer
     }()
     
+    init(cellIndex: Int) {
+        super.init(nibName: nil, bundle: nil)
+        self.cellIndex = cellIndex
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationItem.title = "New Event"
-        
-        if arrayOfNewRooms.count < 10 {
-            fillRoomsToTen()
-        }
         
         let newLayer = CAGradientLayer()
         newLayer.colors = [Global.grayColor.cgColor, UIColor.white.cgColor, Global.grayColor.cgColor]
@@ -56,6 +62,24 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         
         self.serviceFooter.frame = CGRect(x: 0, y: 0, width: newServiceTable.frame.width, height: 65)
         self.newServiceTable.tableFooterView = serviceFooter
+        
+        if cellIndex == 0 {
+            self.navigationItem.title = "New Event"
+            
+            if arrayOfNewRooms.count < 10 {
+                fillRoomsToTen()
+            }
+        } else {
+            
+            self.serviceToEdit = Global.arrayOfServices[cellIndex - 1]
+            self.navigationItem.title = serviceToEdit.title
+            self.arrayOfNewRooms = serviceToEdit.rooms
+            self.newServiceHeader.titleField.text = serviceToEdit.title
+            self.newServiceHeader.counterField.text = serviceToEdit.counter
+            self.newServiceHeader.locationField.text = serviceToEdit.location
+            self.newServiceHeader.datePicker.date = serviceToEdit.date
+        
+        }
         
     }
     
@@ -139,9 +163,15 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
                 }
             }
             
-            let newService : Service = Service(title: newServiceHeader.titleField.text!, date: newServiceHeader.datePicker.date, rooms: arrayOfRoomsInUse, counter: newServiceHeader.counterField.text!, location: newServiceHeader.locationField.text!)
+            if cellIndex == 0 {
             
-            self.navigationController?.pushViewController(ServiceView(service: newService, isNewService: true), animated: true)
+                let newService : Service = Service(title: newServiceHeader.titleField.text!, date: newServiceHeader.datePicker.date, rooms: arrayOfRoomsInUse, counter: newServiceHeader.counterField.text!, location: newServiceHeader.locationField.text!)
+                
+                self.navigationController?.pushViewController(ServiceView(service: newService, cellIndex: 0), animated: true)
+                
+            } else {
+                
+            }
             
         } else {
             let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)

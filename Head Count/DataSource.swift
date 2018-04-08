@@ -106,7 +106,7 @@ class DataSource {
     
     func getString(fromDate date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM • dd • yy"
+        formatter.dateFormat = "E, M.d.yy"
         return formatter.string(from: date)
     }
     

@@ -69,10 +69,30 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            self.navigationController?.pushViewController(NewServiceView(), animated: true)
+            self.navigationController?.pushViewController(NewServiceView(cellIndex: 0), animated: true)
         } else {
-            self.navigationController?.pushViewController(ServiceView(service: Global.arrayOfServices[indexPath.row - 1], isNewService: false), animated: true)
+            self.navigationController?.pushViewController(ServiceView(service: Global.arrayOfServices[indexPath.row - 1], cellIndex: indexPath.row), animated: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if indexPath.row != 0 {
+            return .delete
+        } else {
+            return .none
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            
+            Global.arrayOfServices.remove(at: indexPath.row - 1)
+            dataHandle.saveServicesToFile(services: Global.arrayOfServices)
+            tableView.reloadData()
+            
+        }
+        
     }
     
 }
