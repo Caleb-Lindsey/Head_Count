@@ -30,6 +30,7 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         self.navigationItem.setHidesBackButton(true, animated:false)
         
         Global.arrayOfServices = dataHandle.getServiceData()
+        dataHandle.getTemplateData()
         menu.reloadData()
         
         // Place Table View

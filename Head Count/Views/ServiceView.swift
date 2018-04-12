@@ -20,6 +20,7 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         tableView.delaysContentTouches = false
         tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = UIColor.clear
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -43,11 +44,11 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(returnToMain))
         }
         
-        let newLayer = CAGradientLayer()
-        newLayer.colors = [Global.grayColor.cgColor, UIColor.white.cgColor, Global.grayColor.cgColor]
-        newLayer.frame = view.frame
-        newLayer.frame.origin.y = (self.navigationController?.navigationBar.frame.maxY)!
-        self.view.layer.insertSublayer(newLayer, at: 0)
+//        let newLayer = CAGradientLayer()
+//        newLayer.colors = [Global.grayColor.cgColor, UIColor.white.cgColor, Global.grayColor.cgColor]
+//        newLayer.frame = view.frame
+//        newLayer.frame.origin.y = (self.navigationController?.navigationBar.frame.maxY)!
+//        self.view.layer.insertSublayer(newLayer, at: 0)
         
         // Place Room Table View
         roomTableView.frame = self.view.frame
@@ -91,7 +92,7 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
             dataHandle.saveServicesToFile(services: Global.arrayOfServices)
             self.navigationController?.pushViewController(ServicesView(), animated: true)
         } else {
-            self.navigationController?.pushViewController(NewServiceView(cellIndex: cellIndex), animated: true)
+            self.navigationController?.pushViewController(NewServiceView(cellIndex: cellIndex, template: service), animated: true)
         }
     
         

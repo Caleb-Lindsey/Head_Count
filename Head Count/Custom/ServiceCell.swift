@@ -17,23 +17,23 @@ class ServiceCell : UITableViewCell {
     
     let backView : UIView = {
         let view = UIView()
-        view.backgroundColor = Global.offWhiteColor
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         view.layer.cornerRadius = 3
-        //view.layer.borderWidth = 0.5
-        //view.layer.borderColor = UIColor.white.cgColor
+        view.layer.borderWidth = 0.35
+        view.layer.borderColor = UIColor.white.cgColor
         return view
     }()
     
     let titleLabel : UILabel = {
         let label = UILabel()
-        label.textColor = Global.grayColor
+        label.textColor = UIColor.white
         //label.layer.borderWidth = 0.5
         return label
     }()
     
     let dateLabel : UILabel = {
         let label = UILabel()
-        label.textColor = Global.grayColor
+        label.textColor = UIColor.white
         label.textAlignment = .right
         //label.layer.borderWidth = 0.5
         return label
@@ -41,7 +41,7 @@ class ServiceCell : UITableViewCell {
     
     let counterLabel : UILabel = {
         let label = UILabel()
-        label.textColor = Global.grayColor
+        label.textColor = UIColor.white
         return label
     }()
     

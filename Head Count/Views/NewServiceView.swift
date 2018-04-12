@@ -14,7 +14,7 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     var cellID : String = "cellID"
     var arrayOfNewRooms : [Room] = [Room]()
     var dataHandle = DataSource()
-    var serviceToEdit : Service!
+    var template : Service!
     
     var newServiceTable : UITableView = {
         let tableView = UITableView()
@@ -40,18 +40,18 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         self.cellIndex = cellIndex
     }
     
+    init(cellIndex: Int, template: Service) {
+        super.init(nibName: nil, bundle: nil)
+        self.cellIndex = cellIndex
+        self.template = template
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let newLayer = CAGradientLayer()
-        newLayer.colors = [Global.grayColor.cgColor, UIColor.white.cgColor, Global.grayColor.cgColor]
-        newLayer.frame = view.frame
-        newLayer.frame.origin.y = (self.navigationController?.navigationBar.frame.maxY)!
-        self.view.layer.insertSublayer(newLayer, at: 0)
         
         // Place New Service Table
         newServiceTable.frame = view.frame
@@ -71,13 +71,12 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
             }
         } else {
             
-            self.serviceToEdit = Global.arrayOfServices[cellIndex - 1]
-            self.navigationItem.title = serviceToEdit.title
-            self.arrayOfNewRooms = serviceToEdit.rooms
-            self.newServiceHeader.titleField.text = serviceToEdit.title
-            self.newServiceHeader.counterField.text = serviceToEdit.counter
-            self.newServiceHeader.locationField.text = serviceToEdit.location
-            self.newServiceHeader.datePicker.date = serviceToEdit.date
+            self.navigationItem.title = template.title
+            self.arrayOfNewRooms = template.rooms
+            self.newServiceHeader.titleField.text = template.title
+            self.newServiceHeader.counterField.text = template.counter
+            self.newServiceHeader.locationField.text = template.location
+            self.newServiceHeader.datePicker.date = template.date
         
         }
         
@@ -170,6 +169,16 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
                 self.navigationController?.pushViewController(ServiceView(service: newService, cellIndex: 0), animated: true)
                 
             } else {
+                
+                self.template.title = newServiceHeader.titleField.text!
+                self.template.counter = newServiceHeader.counterField.text!
+                self.template.location = newServiceHeader.locationField.text!
+                self.template.date = newServiceHeader.datePicker.date
+                self.template.rooms = arrayOfNewRooms
+                
+                dataHandle.saveServicesToFile(services: Global.arrayOfServices)
+                
+                self.navigationController?.pushViewController(ServicesView(), animated: true)
                 
             }
             

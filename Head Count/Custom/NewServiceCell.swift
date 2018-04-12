@@ -12,15 +12,17 @@ class NewServiceCell : UITableViewCell {
     
     let backView : UIView = {
         let view = UIView()
-        view.backgroundColor = Global.offWhiteColor
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         view.layer.cornerRadius = 3
+        view.layer.borderWidth = 0.35
+        view.layer.borderColor = UIColor.white.cgColor
         return view
     }()
     
     let titleLabel : UILabel = {
         let label = UILabel()
         label.text = "Create New"
-        label.textColor = Global.grayColor
+        label.textColor = UIColor.white
         label.font = UIFont(name: "DINCondensed-Bold", size: 30)
         //label.layer.borderWidth = 1
         return label
@@ -29,7 +31,7 @@ class NewServiceCell : UITableViewCell {
     let subLabel : UILabel = {
         let label = UILabel()
         label.text = "Take count for a new event! Past events will be listed below."
-        label.textColor = UIColor.darkGray
+        label.textColor = UIColor.white
         label.font = UIFont(name: "Helvetica", size: 15)
         label.numberOfLines = 2
         //label.layer.borderWidth = 1
