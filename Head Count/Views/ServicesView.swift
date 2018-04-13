@@ -70,7 +70,7 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            self.navigationController?.pushViewController(NewServiceView(cellIndex: 0), animated: true)
+            self.navigationController?.pushViewController(TemplateView(), animated: true)
         } else {
             self.navigationController?.pushViewController(ServiceView(service: Global.arrayOfServices[indexPath.row - 1], cellIndex: indexPath.row), animated: true)
         }

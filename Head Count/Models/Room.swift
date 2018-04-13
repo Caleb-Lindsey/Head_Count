@@ -8,15 +8,21 @@
 
 import UIKit
 
-class Room : Decodable, Encodable {
+class Room : Codable, Hashable {
     
     var title : String = ""
     var headCount : Int = 0
-    //var type : String!
+    public var hashValue : Int {
+        return title.hashValue
+    }
     
     init(title: String, headCount: Int) {
         self.title = title
         self.headCount = headCount
+    }
+    
+    static func == (lhs: Room, rhs: Room) -> Bool {
+        return lhs.title == rhs.title
     }
     
 }

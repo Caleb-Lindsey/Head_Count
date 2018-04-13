@@ -10,10 +10,7 @@ import UIKit
 struct Global {
     
     static var arrayOfServices : [Service] = [Service]()
-    static var templateTitles : [String] = [String]()
-    static var templateCounters : [String] = [String]()
-    static var templateLocations : [String] = [String]()
-    static var templateRooms : [Room] = [Room]()
+    static var templateDict = [String : Array<String>]()
     static var grayColor = UIColor(red: 20/255.0, green: 20/255.0, blue: 20/255.0, alpha: 1)
     static var offWhiteColor = UIColor(red: 200/255.0, green: 200/255.0, blue: 200/255.0, alpha: 1)
     static var headerFont : UIFont = UIFont(name: "DINCondensed-Bold", size: 45)!
@@ -82,53 +79,66 @@ class DataSource {
     
     func getTemplateData() {
         
-        // Get Template Titles
+        var titles = Set<String>()
+        var counters = Set<String>()
+        var locations = Set<String>()
+        var templateRooms = Set<Room>()
+        
         for service in Global.arrayOfServices {
             
-            if Global.templateTitles != [] {
-                for title in Global.templateTitles {
-                    if service.title != title {
-                        Global.templateTitles.append(title)
-                    }
+            if !titles.contains(service.title) {
+                titles.insert(service.title)
+                
+                if var arr = Global.templateDict["Titles"] {
+                    arr.append(service.title)
+                    Global.templateDict["Titles"] = arr
+                } else {
+                    Global.templateDict["Titles"] = [service.title]
                 }
-            } else {
-                Global.templateTitles = [service.title]
+                
+            }
+            
+            if !counters.contains(service.counter) {
+                counters.insert(service.counter)
+                
+                if var arr = Global.templateDict["Counters"] {
+                    arr.append(service.counter)
+                    Global.templateDict["Counters"] = arr
+                } else {
+                    Global.templateDict["Counters"] = [service.counter]
+                }
+                
+            }
+            
+            if !locations.contains(service.location) {
+                locations.insert(service.location)
+                
+                if var arr = Global.templateDict["Locations"] {
+                    arr.append(service.location)
+                    Global.templateDict["Locations"] = arr
+                } else {
+                    Global.templateDict["Locations"] = [service.location]
+                }
+                
+            }
+            
+            for room in service.rooms {
+                
+                if !templateRooms.contains(room) {
+                    templateRooms.insert(room)
+                    
+                    if var arr = Global.templateDict["Rooms"] {
+                        arr.append(room.title)
+                        Global.templateDict["Rooms"] = arr
+                    } else {
+                        Global.templateDict["Rooms"] = [room.title]
+                    }
+                    
+                }
+                
             }
             
         }
-        
-        // Get Template Counters
-        for service in Global.arrayOfServices {
-            
-            if Global.templateCounters != [] {
-                for counter in Global.templateCounters {
-                    if service.counter != counter {
-                        Global.templateCounters.append(counter)
-                    }
-                }
-            } else {
-                Global.templateCounters = [service.counter]
-            }
-            
-        }
-        
-        // Get Template Locations
-        for service in Global.arrayOfServices {
-            
-            if Global.templateLocations != [] {
-                for location in Global.templateLocations {
-                    if service.location != location {
-                        Global.templateLocations.append(location)
-                    }
-                }
-            } else {
-                Global.templateLocations = [service.location]
-            }
-            
-        }
-        
-        // Get Template Rooms
-        
         
     }
     
