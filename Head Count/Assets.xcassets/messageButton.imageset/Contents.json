@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "email_icon.png",
+      "filename" : "messageButton.png",
       "scale" : "1x"
     },
     {

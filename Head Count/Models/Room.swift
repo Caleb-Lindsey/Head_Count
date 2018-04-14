@@ -12,13 +12,14 @@ class Room : Codable, Hashable {
     
     var title : String = ""
     var headCount : Int = 0
+    var isSelectedForTemplate : Bool = false
+    
     public var hashValue : Int {
         return title.hashValue
     }
     
-    init(title: String, headCount: Int) {
+    init(title: String) {
         self.title = title
-        self.headCount = headCount
     }
     
     static func == (lhs: Room, rhs: Room) -> Bool {

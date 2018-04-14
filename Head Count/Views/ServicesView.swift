@@ -28,9 +28,8 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         super.viewDidLoad()
         self.navigationItem.title = "Events"
         self.navigationItem.setHidesBackButton(true, animated:false)
-        
-        Global.arrayOfServices = dataHandle.getServiceData()
-        dataHandle.getTemplateData()
+        self.backgroundImage.image = UIImage(named: "crowd")
+        self.backgroundImage.layer.opacity = 0.6
         menu.reloadData()
         
         // Place Table View
@@ -61,7 +60,11 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        if indexPath.row == 0 {
+            return 100
+        } else {
+           return 80
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -70,7 +73,11 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            self.navigationController?.pushViewController(TemplateView(), animated: true)
+            if Global.templateRooms == [] {
+                self.navigationController?.pushViewController(NewServiceView(templateArray: []), animated: true)
+            } else {
+                self.navigationController?.pushViewController(TemplateView(), animated: true)
+            }
         } else {
             self.navigationController?.pushViewController(ServiceView(service: Global.arrayOfServices[indexPath.row - 1], cellIndex: indexPath.row), animated: true)
         }

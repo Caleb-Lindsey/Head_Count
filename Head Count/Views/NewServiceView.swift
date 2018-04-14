@@ -14,7 +14,7 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     var cellID : String = "cellID"
     var arrayOfNewRooms : [Room] = [Room]()
     var dataHandle = DataSource()
-    var template : Service!
+    var service : Service!
     
     var newServiceTable : UITableView = {
         let tableView = UITableView()
@@ -35,15 +35,16 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         return footer
     }()
     
-    init(cellIndex: Int) {
+    init(cellIndex: Int, service: Service) {
         super.init(nibName: nil, bundle: nil)
         self.cellIndex = cellIndex
+        self.service = service
     }
     
-    init(cellIndex: Int, template: Service) {
+    init(templateArray: [Room]) {
         super.init(nibName: nil, bundle: nil)
-        self.cellIndex = cellIndex
-        self.template = template
+        self.cellIndex = 0
+        self.arrayOfNewRooms = templateArray
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -66,17 +67,17 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         if cellIndex == 0 {
             self.navigationItem.title = "New Event"
             
-            if arrayOfNewRooms.count < 10 {
-                fillRoomsToTen()
+            if arrayOfNewRooms.count < 5 {
+                fillRoomsToFive()
             }
         } else {
             
-            self.navigationItem.title = template.title
-            self.arrayOfNewRooms = template.rooms
-            self.newServiceHeader.titleField.text = template.title
-            self.newServiceHeader.counterField.text = template.counter
-            self.newServiceHeader.locationField.text = template.location
-            self.newServiceHeader.datePicker.date = template.date
+            self.navigationItem.title = service.title
+            self.arrayOfNewRooms = service.rooms
+            self.newServiceHeader.titleField.text = service.title
+            self.newServiceHeader.counterField.text = service.counter
+            self.newServiceHeader.locationField.text = service.location
+            self.newServiceHeader.datePicker.date = service.date
         
         }
         
@@ -108,10 +109,10 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         return newServiceHeader
     }
     
-    func fillRoomsToTen() {
+    func fillRoomsToFive() {
         
         while arrayOfNewRooms.count < 5 {
-            let newRoom : Room = Room(title: "", headCount: 0)
+            let newRoom : Room = Room(title: "")
             arrayOfNewRooms.append(newRoom)
         }
         
@@ -119,7 +120,7 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     @objc func addNewRoom() {
         
-        let newRoom : Room = Room(title: "", headCount: 0)
+        let newRoom : Room = Room(title: "")
         arrayOfNewRooms.append(newRoom)
         newServiceTable.reloadData()
         
@@ -170,11 +171,11 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
                 
             } else {
                 
-                self.template.title = newServiceHeader.titleField.text!
-                self.template.counter = newServiceHeader.counterField.text!
-                self.template.location = newServiceHeader.locationField.text!
-                self.template.date = newServiceHeader.datePicker.date
-                self.template.rooms = arrayOfNewRooms
+                self.service.title = newServiceHeader.titleField.text!
+                self.service.counter = newServiceHeader.counterField.text!
+                self.service.location = newServiceHeader.locationField.text!
+                self.service.date = newServiceHeader.datePicker.date
+                self.service.rooms = arrayOfNewRooms
                 
                 dataHandle.saveServicesToFile(services: Global.arrayOfServices)
                 
@@ -201,6 +202,8 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         backItem.title = "Events"
         navigationItem.backBarButtonItem = backItem
     }
+    
+    
     
 }
 

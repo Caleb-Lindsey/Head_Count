@@ -10,9 +10,9 @@ import UIKit
 
 class HeadCountVC : UIViewController {
     
-    let backgroundImage : UIImageView = {
+    var backgroundImage : UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "blueBlur")
+        view.image = UIImage(named: "seats")
         view.contentMode = .scaleAspectFill
         return view
     }()
@@ -23,7 +23,7 @@ class HeadCountVC : UIViewController {
         
         // Place Background Image
         backgroundImage.frame = view.frame
-        //self.view.addSubview(backgroundImage)
+        self.view.addSubview(backgroundImage)
         
     }
     

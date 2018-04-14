@@ -10,8 +10,9 @@ import UIKit
 struct Global {
     
     static var arrayOfServices : [Service] = [Service]()
-    static var templateDict = [String : Array<String>]()
-    static var grayColor = UIColor(red: 20/255.0, green: 20/255.0, blue: 20/255.0, alpha: 1)
+    static var templateRooms : [Room] = [Room]()
+    static var grayColor = UIColor(red: 30/255.0, green: 30/255.0, blue: 30/255.0, alpha: 1)
+    static var blueColor = UIColor(red: 76/255.0, green: 106/255.0, blue: 255/255.0, alpha: 1)
     static var offWhiteColor = UIColor(red: 200/255.0, green: 200/255.0, blue: 200/255.0, alpha: 1)
     static var headerFont : UIFont = UIFont(name: "DINCondensed-Bold", size: 45)!
     static var serviceFilePath : String = "HeadCountServices.json"
@@ -79,65 +80,32 @@ class DataSource {
     
     func getTemplateData() {
         
-        var titles = Set<String>()
-        var counters = Set<String>()
-        var locations = Set<String>()
-        var templateRooms = Set<Room>()
+        Global.templateRooms = []
+        var templateRooms = Set<String>()
         
         for service in Global.arrayOfServices {
             
-            if !titles.contains(service.title) {
-                titles.insert(service.title)
-                
-                if var arr = Global.templateDict["Titles"] {
-                    arr.append(service.title)
-                    Global.templateDict["Titles"] = arr
-                } else {
-                    Global.templateDict["Titles"] = [service.title]
-                }
-                
-            }
-            
-            if !counters.contains(service.counter) {
-                counters.insert(service.counter)
-                
-                if var arr = Global.templateDict["Counters"] {
-                    arr.append(service.counter)
-                    Global.templateDict["Counters"] = arr
-                } else {
-                    Global.templateDict["Counters"] = [service.counter]
-                }
-                
-            }
-            
-            if !locations.contains(service.location) {
-                locations.insert(service.location)
-                
-                if var arr = Global.templateDict["Locations"] {
-                    arr.append(service.location)
-                    Global.templateDict["Locations"] = arr
-                } else {
-                    Global.templateDict["Locations"] = [service.location]
-                }
-                
-            }
-            
             for room in service.rooms {
                 
-                if !templateRooms.contains(room) {
-                    templateRooms.insert(room)
+                if !templateRooms.contains(room.title) {
+                    templateRooms.insert(room.title)
                     
-                    if var arr = Global.templateDict["Rooms"] {
-                        arr.append(room.title)
-                        Global.templateDict["Rooms"] = arr
+                    let newRoom = Room(title: room.title)
+                    
+                    if Global.templateRooms == [] {
+                        Global.templateRooms = [newRoom]
                     } else {
-                        Global.templateDict["Rooms"] = [room.title]
+                        Global.templateRooms.append(newRoom)
                     }
-                    
                 }
-                
             }
-            
+        }
+    }
+    
+    func clearTemplateData() {
+        
+        for room in Global.templateRooms {
+            room.isSelectedForTemplate = false
         }
         
     }

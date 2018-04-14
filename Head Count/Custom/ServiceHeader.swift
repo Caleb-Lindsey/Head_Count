@@ -43,15 +43,22 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate, MFMailComp
     
     var emailButton : UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "email_icon"), for: .normal)
+        button.setImage(UIImage(named: "emailButton"), for: .normal)
         button.addTarget(self, action: #selector(sendEmail), for: .touchUpInside)
+        //button.layer.borderWidth = 0.4
+        //button.layer.borderColor = UIColor.white.cgColor
+        button.layer.cornerRadius = 8
         return button
     }()
     
     var messageButton : UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "messages_icon"), for: .normal)
+        button.setImage(UIImage(named: "messageButton"), for: .normal)
         button.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+        button.imageView?.layer.cornerRadius = 10
+        //button.layer.borderWidth = 0.4
+        //button.layer.borderColor = UIColor.white.cgColor
+        button.layer.cornerRadius = 8
         return button
     }()
     
@@ -91,11 +98,11 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate, MFMailComp
         self.addSubview(dateLabel)
         
         // Place Email Button
-        emailButton.frame = CGRect(x: self.frame.width - 44 - 5, y: self.frame.height - 44 - 5, width: 44, height: 44)
+        emailButton.frame = CGRect(x: self.frame.width - 50 - 5, y: self.frame.height - 50 - 5, width: 50, height: 50)
         self.addSubview(emailButton)
         
         // Place Message Button
-        messageButton.frame = CGRect(x: emailButton.frame.origin.x - 44 - 5, y: emailButton.frame.origin.y, width: 44, height: 44)
+        messageButton.frame = CGRect(x: emailButton.frame.origin.x - 50 - 5, y: emailButton.frame.origin.y, width: 50, height: 50)
         self.addSubview(messageButton)
         
         // Place Total Label

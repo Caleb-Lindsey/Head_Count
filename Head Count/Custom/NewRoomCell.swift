@@ -16,7 +16,6 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
     var roomtitle : UITextField = {
         let textField = UITextField()
         textField.placeholder = "Room Title"
-        textField.returnKeyType = UIReturnKeyType.done
         return textField
     }()
     
@@ -44,6 +43,8 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
     
     override func layoutSubviews() {
         
+        addDoneButtonOnKeyboard()
+        
         // Place Room Title
         roomtitle.frame = CGRect(x: 0, y: 0, width: contentView.frame.width * (3/4) - 5, height: contentView.frame.height)
         roomtitle.leftView = paddingView
@@ -62,11 +63,6 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
         
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return false
-    }
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         if textField == roomtitle {
@@ -78,6 +74,31 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
             
         }
         
+    }
+    
+    func addDoneButtonOnKeyboard() {
+        
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle = UIBarStyle.blackTranslucent
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(doneButtonAction))
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        self.roomCount.inputAccessoryView = doneToolbar
+        self.roomtitle.inputAccessoryView = doneToolbar
+        
+    }
+    
+    @objc func doneButtonAction() {
+        self.roomCount.resignFirstResponder()
+        self.roomtitle.resignFirstResponder()
     }
     
 }

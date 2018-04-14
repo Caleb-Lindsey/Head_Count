@@ -44,12 +44,6 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(returnToMain))
         }
         
-//        let newLayer = CAGradientLayer()
-//        newLayer.colors = [Global.grayColor.cgColor, UIColor.white.cgColor, Global.grayColor.cgColor]
-//        newLayer.frame = view.frame
-//        newLayer.frame.origin.y = (self.navigationController?.navigationBar.frame.maxY)!
-//        self.view.layer.insertSublayer(newLayer, at: 0)
-        
         // Place Room Table View
         roomTableView.frame = self.view.frame
         roomTableView.delegate = self
@@ -90,14 +84,12 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
             Global.arrayOfServices.append(service)
             Global.arrayOfServices = dataHandle.orderServiceArrayByDate(array: &Global.arrayOfServices)
             dataHandle.saveServicesToFile(services: Global.arrayOfServices)
+            dataHandle.getTemplateData()
             self.navigationController?.pushViewController(ServicesView(), animated: true)
         } else {
-            self.navigationController?.pushViewController(NewServiceView(cellIndex: cellIndex, template: service), animated: true)
+            self.navigationController?.pushViewController(NewServiceView(cellIndex: cellIndex, service: service), animated: true)
         }
-    
-        
     }
-    
 }
 
 

@@ -12,10 +12,11 @@ class NewServiceCell : UITableViewCell {
     
     let backView : UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        view.backgroundColor = UIColor.darkGray
         view.layer.cornerRadius = 3
         view.layer.borderWidth = 0.35
         view.layer.borderColor = UIColor.white.cgColor
+        view.layer.opacity = 0.8
         return view
     }()
     
@@ -32,7 +33,7 @@ class NewServiceCell : UITableViewCell {
         let label = UILabel()
         label.text = "Take count for a new event! Past events will be listed below."
         label.textColor = UIColor.white
-        label.font = UIFont(name: "Helvetica", size: 15)
+        label.font = UIFont(name: "DamascusLight", size: 16)
         label.numberOfLines = 2
         //label.layer.borderWidth = 1
         return label
@@ -54,7 +55,7 @@ class NewServiceCell : UITableViewCell {
         let labelHeight = contentView.frame.height / 3
         
         // Place Back View
-        backView.frame = CGRect(x: 15, y: 7.5, width: self.contentView.frame.width - 30, height: self.contentView.frame.height - 15)
+        backView.frame = CGRect(x: 10, y: 7.5, width: self.contentView.frame.width - 20, height: self.contentView.frame.height - 15)
         self.addSubview(backView)
         
         // Place Title Label
@@ -65,6 +66,14 @@ class NewServiceCell : UITableViewCell {
         subLabel.frame = CGRect(x: 15, y: titleLabel.frame.maxY, width: titleLabel.frame.width, height: backView.frame.height - labelHeight - 10)
         backView.addSubview(subLabel)
         
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        if highlighted {
+            backView.backgroundColor = UIColor.gray
+        } else {
+            backView.backgroundColor = UIColor.darkGray
+        }
     }
     
 }
