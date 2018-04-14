@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let dataHandle = DataSource()
         Global.arrayOfServices = dataHandle.getServiceData()
-        dataHandle.getTemplateData()
         
         // Ignore the Storyboard
         window = UIWindow(frame: UIScreen.main.bounds)

@@ -84,7 +84,6 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
             Global.arrayOfServices.append(service)
             Global.arrayOfServices = dataHandle.orderServiceArrayByDate(array: &Global.arrayOfServices)
             dataHandle.saveServicesToFile(services: Global.arrayOfServices)
-            dataHandle.getTemplateData()
             self.navigationController?.pushViewController(ServicesView(), animated: true)
         } else {
             self.navigationController?.pushViewController(NewServiceView(cellIndex: cellIndex, service: service), animated: true)

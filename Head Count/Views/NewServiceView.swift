@@ -88,7 +88,7 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : NewRoomCell = NewRoomCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID, room: arrayOfNewRooms[indexPath.row])
+        let cell : NewRoomCell = NewRoomCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID, room: arrayOfNewRooms[indexPath.row], tableView: tableView)
         cell.roomtitle.text = arrayOfNewRooms[indexPath.row].title
         if arrayOfNewRooms[indexPath.row].headCount != 0 {
             cell.roomCount.text = "\(arrayOfNewRooms[indexPath.row].headCount)"
@@ -98,7 +98,7 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 65
+        return 55
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -107,6 +107,19 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return newServiceHeader
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            arrayOfNewRooms.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+        
     }
     
     func fillRoomsToFive() {
@@ -202,9 +215,6 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         backItem.title = "Events"
         navigationItem.backBarButtonItem = backItem
     }
-    
-    
-    
 }
 
 

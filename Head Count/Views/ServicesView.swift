@@ -22,12 +22,16 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         menu.reloadData()
+        dataHandle.clearTemplateData()
+        dataHandle.getTemplateData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Events"
-        self.navigationItem.setHidesBackButton(true, animated:false)
+        let settingsButton = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(showSettings))
+        settingsButton.tintColor = Global.blueColor
+        self.navigationItem.leftBarButtonItem = settingsButton
         self.backgroundImage.image = UIImage(named: "crowd")
         self.backgroundImage.layer.opacity = 0.6
         menu.reloadData()
@@ -98,8 +102,14 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
             Global.arrayOfServices.remove(at: indexPath.row - 1)
             dataHandle.saveServicesToFile(services: Global.arrayOfServices)
             tableView.reloadData()
+            dataHandle.clearTemplateData()
+            dataHandle.getTemplateData()
             
         }
+        
+    }
+    
+    @objc func showSettings() {
         
     }
     

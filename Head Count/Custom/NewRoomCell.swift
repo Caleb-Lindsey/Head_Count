@@ -11,6 +11,7 @@ import UIKit
 class NewRoomCell : UITableViewCell, UITextFieldDelegate {
     
     var room : Room!
+    var tableView : UITableView!
     let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
     
     var roomtitle : UITextField = {
@@ -28,9 +29,10 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
         return textField
     }()
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String?, room: Room) {
+    init(style: UITableViewCellStyle, reuseIdentifier: String?, room: Room, tableView : UITableView) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.room = room
+        self.tableView = tableView
         self.selectionStyle = .none
         self.contentView.layer.borderWidth = 0.35
         self.contentView.layer.borderColor = UIColor.lightGray.cgColor
@@ -78,7 +80,7 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
     
     func addDoneButtonOnKeyboard() {
         
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 25))
         doneToolbar.barStyle = UIBarStyle.blackTranslucent
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
@@ -99,7 +101,34 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
     @objc func doneButtonAction() {
         self.roomCount.resignFirstResponder()
         self.roomtitle.resignFirstResponder()
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            self.tableView.contentOffset.y = 0
+        }, completion: nil)
+        
     }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        let pointInTable : CGPoint = roomtitle.superview!.convert(roomtitle.frame.origin, to: tableView)
+        var contentOffset : CGPoint = tableView.contentOffset
+        contentOffset.y = pointInTable.y
+        
+        if let accessoryView = roomtitle.inputAccessoryView {
+            contentOffset.y -= accessoryView.frame.size.height
+        }
+        
+        contentOffset.y -= tableView.frame.height / 3 + 55
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
+            self.tableView.contentOffset = contentOffset
+        }, completion: nil)
+        
+        return true
+        
+    }
+    
+    
     
 }
 
