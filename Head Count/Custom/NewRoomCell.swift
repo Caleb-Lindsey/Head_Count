@@ -11,7 +11,7 @@ import UIKit
 class NewRoomCell : UITableViewCell, UITextFieldDelegate {
     
     var room : Room!
-    var tableView : UITableView!
+    var viewController : NewServiceView!
     let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: 30))
     
     var roomtitle : UITextField = {
@@ -29,10 +29,10 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
         return textField
     }()
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String?, room: Room, tableView : UITableView) {
+    init(style: UITableViewCellStyle, reuseIdentifier: String?, room: Room, viewController : NewServiceView) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.room = room
-        self.tableView = tableView
+        self.viewController = viewController
         self.selectionStyle = .none
         self.contentView.layer.borderWidth = 0.35
         self.contentView.layer.borderColor = UIColor.lightGray.cgColor
@@ -84,9 +84,13 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
         doneToolbar.barStyle = UIBarStyle.blackTranslucent
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(doneButtonAction))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "close", style: UIBarButtonItemStyle.done, target: self, action: #selector(doneButtonAction))
+        done.tintColor = UIColor.white
+        let useTapper : UIBarButtonItem = UIBarButtonItem(title: "Use Tapper", style: UIBarButtonItemStyle.plain, target: self, action: #selector(openTapper))
+        useTapper.tintColor = UIColor.white
         
         var items = [UIBarButtonItem]()
+        items.append(useTapper)
         items.append(flexSpace)
         items.append(done)
         
@@ -101,34 +105,45 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
     @objc func doneButtonAction() {
         self.roomCount.resignFirstResponder()
         self.roomtitle.resignFirstResponder()
-        
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-            self.tableView.contentOffset.y = 0
-        }, completion: nil)
-        
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
-        let pointInTable : CGPoint = roomtitle.superview!.convert(roomtitle.frame.origin, to: tableView)
-        var contentOffset : CGPoint = tableView.contentOffset
+        let pointInTable : CGPoint = roomtitle.superview!.convert(roomtitle.frame.origin, to: viewController.newServiceTable)
+        var contentOffset : CGPoint = viewController.newServiceTable.contentOffset
         contentOffset.y = pointInTable.y
         
         if let accessoryView = roomtitle.inputAccessoryView {
             contentOffset.y -= accessoryView.frame.size.height
         }
         
-        contentOffset.y -= tableView.frame.height / 3 + 55
+        contentOffset.y -= viewController.newServiceTable.frame.height / 3 + 55
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-            self.tableView.contentOffset = contentOffset
+            self.viewController.newServiceTable.contentOffset = contentOffset
         }, completion: nil)
         
         return true
         
     }
     
-    
+    @objc func openTapper() {
+        
+        self.viewController.navigationItem.hidesBackButton = true
+        self.endEditing(true)
+        
+        let tapperView : TapperView = TapperView(roomCell: self, viewController: viewController)
+        tapperView.frame = CGRect(x: 0, y: self.viewController.view.frame.height, width: self.viewController.view.frame.width, height: self.viewController.view.frame.height)
+        self.viewController.view.addSubview(tapperView)
+        
+        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+            
+            tapperView.frame.origin.y = (self.viewController.navigationController?.navigationBar.frame.maxY)!
+            
+        }) { (finished : Bool) in
+        }
+        
+    }
     
 }
 

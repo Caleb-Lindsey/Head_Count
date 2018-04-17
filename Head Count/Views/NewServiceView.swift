@@ -88,7 +88,7 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : NewRoomCell = NewRoomCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID, room: arrayOfNewRooms[indexPath.row], tableView: tableView)
+        let cell : NewRoomCell = NewRoomCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID, room: arrayOfNewRooms[indexPath.row], viewController: self)
         cell.roomtitle.text = arrayOfNewRooms[indexPath.row].title
         if arrayOfNewRooms[indexPath.row].headCount != 0 {
             cell.roomCount.text = "\(arrayOfNewRooms[indexPath.row].headCount)"
@@ -215,6 +215,7 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         backItem.title = "Events"
         navigationItem.backBarButtonItem = backItem
     }
+    
 }
 
 

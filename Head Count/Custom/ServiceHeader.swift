@@ -119,7 +119,6 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate, MFMailComp
             controller.body = self.service.formatForDelivery()
             controller.subject = titleLabel.text
             controller.recipients = []
-            //controller.addAttachmentData("", typeIdentifier: "", filename: "")
             controller.messageComposeDelegate = self
             viewController.present(controller, animated: true, completion: nil)
         }

@@ -29,9 +29,9 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Events"
-        let settingsButton = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(showSettings))
-        settingsButton.tintColor = Global.blueColor
-        self.navigationItem.leftBarButtonItem = settingsButton
+//        let settingsButton = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(showSettings))
+//        settingsButton.tintColor = Global.blueColor
+//        self.navigationItem.leftBarButtonItem = settingsButton
         self.backgroundImage.image = UIImage(named: "crowd")
         self.backgroundImage.layer.opacity = 0.6
         menu.reloadData()
@@ -111,8 +111,9 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     @objc func showSettings() {
         
+        
+        
     }
-    
 }
 
 
