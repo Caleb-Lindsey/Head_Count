@@ -41,7 +41,7 @@ class Service : Codable {
     func formatForDelivery() -> String {
         var formattedService : String = ""
         let formattedDate : String = DataSource().getString(fromDate: date!)
-        let greeting : String = "Here's the count for \(title!).\nCounter: \(counter!)\nDate: \(formattedDate)\n\n"
+        let greeting : String = "Here's the count for \(title!).\nCounter: \(counter!)\nLocation: \(location!)\nDate: \(formattedDate)\n\n"
         formattedService += greeting
         
         for thisRoom in self.rooms {

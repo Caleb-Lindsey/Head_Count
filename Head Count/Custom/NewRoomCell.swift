@@ -65,19 +65,6 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
         
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        if textField == roomtitle {
-            self.room.title = roomtitle.text!
-        } else {
-            if roomCount.text != "" {
-                self.room.headCount = Int(roomCount.text!)!
-            }
-            
-        }
-        
-    }
-    
     func addDoneButtonOnKeyboard() {
         
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 25))
@@ -143,6 +130,18 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
         }) { (finished : Bool) in
         }
         
+    }
+    
+    func applyFieldsToRoom() {
+        
+        if self.roomtitle.text != "" {
+            self.room.title = self.roomtitle.text!
+        }
+        
+        if self.roomCount.text != "" {
+            self.room.headCount = Int(self.roomCount.text!)!
+        }
+    
     }
     
 }

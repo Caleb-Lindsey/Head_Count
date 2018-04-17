@@ -156,8 +156,9 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
             alertMessage += "\n- Missing event location."
         }
         
-        for room in arrayOfNewRooms {
-            if room.title != "" {
+        for count in 0...arrayOfNewRooms.count - 1 {
+            let cell : NewRoomCell =  self.newServiceTable.cellForRow(at: IndexPath(row: count, section: 0)) as! NewRoomCell
+            if cell.roomtitle.text != "" {
                 allRoomsEmpty = false
             }
         }
@@ -166,14 +167,20 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
             alertMessage += "\n- No rooms listed."
         }
 
-        if alertMessage == "" && allRoomsEmpty == false {
+        if alertMessage == "" {
             
             var arrayOfRoomsInUse : [Room] = []
             
+            var count : Int = 0
             for room in arrayOfNewRooms {
+                
+                let cell : NewRoomCell = self.newServiceTable.cellForRow(at: IndexPath(row: count, section: 0)) as! NewRoomCell
+                cell.applyFieldsToRoom()
+                
                 if room.title != "" {
                     arrayOfRoomsInUse.append(room)
                 }
+                count += 1
             }
             
             if cellIndex == 0 {

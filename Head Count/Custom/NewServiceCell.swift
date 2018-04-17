@@ -31,7 +31,7 @@ class NewServiceCell : UITableViewCell {
     
     let subLabel : UILabel = {
         let label = UILabel()
-        label.text = "Take count for a new event! Past events will be listed below."
+        label.text = "Take count for a new service! Past services will be listed below."
         label.textColor = UIColor.white
         label.font = UIFont(name: "DamascusLight", size: 16)
         label.numberOfLines = 2

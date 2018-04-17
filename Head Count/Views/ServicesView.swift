@@ -24,11 +24,12 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         menu.reloadData()
         dataHandle.clearTemplateData()
         dataHandle.getTemplateData()
+        self.navigationItem.hidesBackButton = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Events"
+        self.navigationItem.title = "Services"
 //        let settingsButton = UIBarButtonItem(image: UIImage(named: "settings"), style: .plain, target: self, action: #selector(showSettings))
 //        settingsButton.tintColor = Global.blueColor
 //        self.navigationItem.leftBarButtonItem = settingsButton
