@@ -52,6 +52,7 @@ class ServiceCell : UITableViewCell {
     
     init(style: UITableViewCellStyle, reuseIdentifier: String?, title: String, counter: String, date: Date) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         self.title = title
         self.date = date
         self.counter = counter
@@ -68,27 +69,33 @@ class ServiceCell : UITableViewCell {
         
         let labelHeight = contentView.frame.height / 3
         
+        // Place Back View
         backView.frame = CGRect(x: 15, y: 7.5, width: self.contentView.frame.width - 30, height: self.contentView.frame.height - 15)
         self.addSubview(backView)
         
+        // Place Title Label
         titleLabel.frame = CGRect(x: 15, y: 5, width: backView.frame.width / 2 - 15, height: labelHeight)
         titleLabel.text = self.title
         backView.addSubview(titleLabel)
         
+        // Place Date Label
         dateLabel.frame = CGRect(x: titleLabel.frame.maxX + 15, y: 5, width: titleLabel.frame.width - 15, height: titleLabel.frame.height)
         dateLabel.text = DataSource().getString(fromDate: date)
         backView.addSubview(dateLabel)
         
+        // Place Counter Label
         counterLabel.frame = CGRect(x: 15, y: titleLabel.frame.maxY, width: dateLabel.frame.width, height: dateLabel.frame.height)
         counterLabel.text = self.counter
         backView.addSubview(counterLabel)
         
+        // Place Chevron Image
         chevronImage.frame = CGRect(x: backView.frame.width - 18 - 5, y: backView.frame.height / 2 - 5, width: 18, height: 18)
         backView.addSubview(chevronImage)
         
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        
         if highlighted {
             backView.backgroundColor = UIColor.gray
         } else {
@@ -97,17 +104,3 @@ class ServiceCell : UITableViewCell {
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

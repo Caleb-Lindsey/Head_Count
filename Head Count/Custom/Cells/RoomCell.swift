@@ -27,6 +27,7 @@ class RoomCell : UITableViewCell {
     
     init(style: UITableViewCellStyle, reuseIdentifier: String?, room: Room) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         self.room = room
         self.selectionStyle = .none
         self.contentView.layer.borderWidth = 0.35
@@ -51,23 +52,4 @@ class RoomCell : UITableViewCell {
         
     }
     
-    
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

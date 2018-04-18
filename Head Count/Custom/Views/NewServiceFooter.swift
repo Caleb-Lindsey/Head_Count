@@ -72,19 +72,3 @@ class NewServiceFooter : UIView {
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

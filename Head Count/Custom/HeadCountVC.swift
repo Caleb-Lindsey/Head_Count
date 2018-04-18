@@ -19,6 +19,7 @@ class HeadCountVC : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.view.backgroundColor = Global.grayColor
         
         // Place Background Image

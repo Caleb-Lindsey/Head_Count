@@ -75,10 +75,12 @@ class TemplateView : HeadCountVC, UITableViewDelegate, UITableViewDataSource {
             
             if room.isSelectedForTemplate {
                 
+                let newRoom : Room = Room(title: room.title)
+                
                 if roomsToUse == [] {
-                    roomsToUse = [room]
+                    roomsToUse = [newRoom]
                 } else {
-                    roomsToUse.append(room)
+                    roomsToUse.append(newRoom)
                 }
                 
             }

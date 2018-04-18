@@ -25,7 +25,6 @@ class NewServiceCell : UITableViewCell {
         label.text = "Create New"
         label.textColor = UIColor.white
         label.font = UIFont(name: "DINCondensed-Bold", size: 30)
-        //label.layer.borderWidth = 1
         return label
     }()
     
@@ -35,12 +34,12 @@ class NewServiceCell : UITableViewCell {
         label.textColor = UIColor.white
         label.font = UIFont(name: "DamascusLight", size: 16)
         label.numberOfLines = 2
-        //label.layer.borderWidth = 1
         return label
     }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         self.backgroundColor = UIColor.clear
         self.contentView.backgroundColor = UIColor.clear
         self.selectionStyle = .none
@@ -69,23 +68,13 @@ class NewServiceCell : UITableViewCell {
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        
         if highlighted {
             backView.backgroundColor = UIColor.gray
         } else {
             backView.backgroundColor = UIColor.darkGray
         }
+        
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-

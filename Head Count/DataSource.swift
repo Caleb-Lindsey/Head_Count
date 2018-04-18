@@ -84,11 +84,12 @@ class DataSource {
             for room in service.rooms {
                 
                 if !Global.templateRooms.contains(room) {
-                    room.headCount = 0
-                    Global.templateRooms.insert(room)
+                    let newRoom : Room = Room(title: room.title)
+                    Global.templateRooms.insert(newRoom)
                 }
                 
             }
+            
         }
         
         clearTemplateData()
@@ -99,25 +100,9 @@ class DataSource {
         
         for room in Global.templateRooms {
             room.isSelectedForTemplate = false
+            room.headCount = 0
         }
         
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

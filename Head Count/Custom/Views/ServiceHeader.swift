@@ -16,8 +16,6 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate, MFMailComp
 
     var titleLabel : UILabel = {
         let label = UILabel()
-        //label.layer.borderColor = UIColor.white.cgColor
-        //label.layer.borderWidth = 1
         label.textColor = UIColor.white
         label.font = Global.headerFont
         return label
@@ -25,8 +23,6 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate, MFMailComp
     
     var dateLabel : UILabel = {
         let label = UILabel()
-        //label.layer.borderColor = UIColor.white.cgColor
-        //label.layer.borderWidth = 1
         label.textColor = UIColor.white
         label.font = UIFont(name: "Helvetica", size: 18)
         return label
@@ -34,8 +30,6 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate, MFMailComp
     
     var counterLabel : UILabel = {
         let label = UILabel()
-        //label.layer.borderColor = UIColor.white.cgColor
-        //label.layer.borderWidth = 1
         label.textColor = UIColor.white
         label.font = UIFont(name: "Helvetica", size: 18)
         return label
@@ -45,8 +39,6 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate, MFMailComp
         let button = UIButton()
         button.setImage(UIImage(named: "emailButton"), for: .normal)
         button.addTarget(self, action: #selector(sendEmail), for: .touchUpInside)
-        //button.layer.borderWidth = 0.4
-        //button.layer.borderColor = UIColor.white.cgColor
         button.layer.cornerRadius = 8
         return button
     }()
@@ -56,8 +48,6 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate, MFMailComp
         button.setImage(UIImage(named: "messageButton"), for: .normal)
         button.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
         button.imageView?.layer.cornerRadius = 10
-        //button.layer.borderWidth = 0.4
-        //button.layer.borderColor = UIColor.white.cgColor
         button.layer.cornerRadius = 8
         return button
     }()
@@ -115,12 +105,14 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate, MFMailComp
     @objc func sendMessage() {
         
         if (MFMessageComposeViewController.canSendText()) {
+            
             let controller = MFMessageComposeViewController()
             controller.body = self.service.formatForDelivery()
             controller.subject = titleLabel.text
             controller.recipients = []
             controller.messageComposeDelegate = self
             viewController.present(controller, animated: true, completion: nil)
+            
         }
     }
     
@@ -136,30 +128,11 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate, MFMailComp
     }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        //... handle sms screen actions
         viewController.dismiss(animated: true, completion: nil)
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        
         controller.dismiss(animated: true, completion: nil)
-        
     }
-    
-    
-    
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

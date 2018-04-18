@@ -26,6 +26,7 @@ class TemplateCell : UITableViewCell {
     
     init(reuseIdentifier: String?, room: Room) {
         super.init(style: UITableViewCellStyle.default, reuseIdentifier: reuseIdentifier)
+        
         self.room = room
         self.backgroundColor = UIColor.clear
         self.contentView.backgroundColor = UIColor.clear
@@ -38,9 +39,11 @@ class TemplateCell : UITableViewCell {
     
     override func layoutSubviews() {
         
+        // Place Side View
         sideView.frame = CGRect(x: 0, y: 5, width: 5, height: self.contentView.frame.height - 10)
         self.contentView.addSubview(sideView)
         
+        // Place Title Label
         titleLabel.frame = CGRect(x: sideView.frame.maxX + 10, y: 0, width: contentView.frame.width - sideView.frame.width - 10 - 5, height: contentView.frame.height)
         titleLabel.text = self.room.title
         self.contentView.addSubview(titleLabel)
@@ -59,14 +62,4 @@ class TemplateCell : UITableViewCell {
         
     }
     
-    
-    
 }
-
-
-
-
-
-
-
-

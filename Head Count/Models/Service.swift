@@ -17,13 +17,11 @@ class Service : Codable {
     var location : String!
     
     init(title: String, date: Date, rooms: [Room], counter: String, location: String) {
-        
         self.title = title
         self.date = date
         self.rooms = rooms
         self.counter = counter
         self.location = location
-        
     }
     
     func getTotal() -> Int {
@@ -35,10 +33,10 @@ class Service : Codable {
         }
         
         return total
-        
     }
     
     func formatForDelivery() -> String {
+        
         var formattedService : String = ""
         let formattedDate : String = DataSource().getString(fromDate: date!)
         let greeting : String = "Here's the count for \(title!).\nCounter: \(counter!)\nLocation: \(location!)\nDate: \(formattedDate)\n\n"
@@ -48,27 +46,13 @@ class Service : Codable {
             
             let line : String = "     • \(thisRoom.title): \(thisRoom.headCount)\n\n"
             formattedService += line
+            
         }
         
         let total : String = "TOTAL: \(self.getTotal())"
         formattedService += total
         
         return formattedService
-        
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

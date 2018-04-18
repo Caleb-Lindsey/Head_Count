@@ -73,6 +73,7 @@ class TapperView : UIView {
     
     init(roomCell: NewRoomCell, viewController: UIViewController) {
         super.init(frame: CGRect())
+        
         self.roomCell = roomCell
         self.viewController = viewController
         self.navHeight = (viewController.navigationController?.navigationBar.frame.height)!
@@ -95,19 +96,24 @@ class TapperView : UIView {
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(clearCount))
         clearButton.addGestureRecognizer(longGesture)
         
+        // Place Number Label
         numberLabel.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height / 4)
         numberLabel.text = "\((self.count)!)"
         self.addSubview(numberLabel)
         
+        // Place Clear Button
         clearButton.frame = CGRect(x: 0, y: numberLabel.frame.maxY, width: self.frame.width / 2, height: 50)
         self.addSubview(clearButton)
         
+        // Place Use Button
         useButton.frame = CGRect(x: clearButton.frame.maxX, y: numberLabel.frame.maxY, width: self.frame.width / 2, height: 50)
         self.addSubview(useButton)
         
+        // Place Tapper Button
         tapperButton.frame = CGRect(x: 0, y: clearButton.frame.maxY, width: self.frame.width, height: self.frame.height - clearButton.frame.height - numberLabel.frame.height - navHeight)
         self.addSubview(tapperButton)
         
+        // Place Cancel Button
         cancelButton.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
         self.addSubview(cancelButton)
         
@@ -123,8 +129,10 @@ class TapperView : UIView {
     @objc func decrementByOne() {
         
         if count > 0 {
+            
             count = count - 1
             numberLabel.text = "\((count)!)"
+            
         }
         
     }
@@ -158,17 +166,3 @@ class TapperView : UIView {
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

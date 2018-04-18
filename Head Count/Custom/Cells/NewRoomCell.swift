@@ -37,12 +37,10 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
     
     init(style: UITableViewCellStyle, reuseIdentifier: String?, room: Room, viewController : NewServiceView) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         self.room = room
         self.viewController = viewController
         self.selectionStyle = .none
-        //self.contentView.layer.borderWidth = 0.35
-        //self.contentView.layer.borderColor = UIColor.lightGray.cgColor
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -101,6 +99,7 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
         if textField == roomtitle {
             self.room.title = roomtitle.text!
         } else {
+            
             if roomCount.text != "" {
                 self.room.headCount = Int(roomCount.text!)!
             }
@@ -144,11 +143,8 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
         self.viewController.view.addSubview(tapperView)
         
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
-            
             tapperView.frame.origin.y = (self.viewController.navigationController?.navigationBar.frame.maxY)!
-            
-        }) { (finished : Bool) in
-        }
+        })
         
     }
     
@@ -169,19 +165,3 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
