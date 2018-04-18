@@ -29,13 +29,19 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
         return textField
     }()
     
+    let dragView : UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.blue
+        return view
+    }()
+    
     init(style: UITableViewCellStyle, reuseIdentifier: String?, room: Room, viewController : NewServiceView) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.room = room
         self.viewController = viewController
         self.selectionStyle = .none
-        self.contentView.layer.borderWidth = 0.35
-        self.contentView.layer.borderColor = UIColor.lightGray.cgColor
+        //self.contentView.layer.borderWidth = 0.35
+        //self.contentView.layer.borderColor = UIColor.lightGray.cgColor
         
     }
     
@@ -44,6 +50,7 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         
         addDoneButtonOnKeyboard()
         
@@ -86,6 +93,19 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
         
         self.roomCount.inputAccessoryView = doneToolbar
         self.roomtitle.inputAccessoryView = doneToolbar
+        
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        if textField == roomtitle {
+            self.room.title = roomtitle.text!
+        } else {
+            if roomCount.text != "" {
+                self.room.headCount = Int(roomCount.text!)!
+            }
+            
+        }
         
     }
     
@@ -142,6 +162,10 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
             self.room.headCount = Int(self.roomCount.text!)!
         }
     
+    }
+    
+    override func willTransition(to state: UITableViewCellStateMask) {
+        super.willTransition(to: state)
     }
     
 }

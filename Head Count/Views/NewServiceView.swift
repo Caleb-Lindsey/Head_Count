@@ -31,6 +31,7 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     var serviceFooter : NewServiceFooter = {
         let footer = NewServiceFooter()
         footer.completeButton.addTarget(self, action: #selector(completeService), for: .touchUpInside)
+        footer.orderRoomButton.addTarget(self, action: #selector(toggleEditMode), for: .touchUpInside)
         footer.newRoomButton.addTarget(self, action: #selector(addNewRoom), for: .touchUpInside)
         return footer
     }()
@@ -110,7 +111,11 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        return .delete
+        if tableView.isEditing {
+            return .none
+        } else {
+            return .delete
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -118,8 +123,22 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
             arrayOfNewRooms.remove(at: indexPath.row)
             tableView.reloadData()
+            
         }
-        
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let movedObject = self.arrayOfNewRooms[sourceIndexPath.row]
+        arrayOfNewRooms.remove(at: sourceIndexPath.row)
+        arrayOfNewRooms.insert(movedObject, at: destinationIndexPath.row)
     }
     
     func fillRoomsToFive() {
@@ -137,6 +156,14 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         arrayOfNewRooms.append(newRoom)
         newServiceTable.reloadData()
         
+    }
+    
+    @objc func toggleEditMode() {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
+            self.newServiceTable.isEditing = !self.newServiceTable.isEditing
+        }) { (finished : Bool) in
+            
+        }
     }
     
     @objc func completeService() {
@@ -222,7 +249,6 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         backItem.title = "Events"
         navigationItem.backBarButtonItem = backItem
     }
-    
 }
 
 

@@ -12,8 +12,21 @@ class NewServiceFooter : UIView {
     
     var newRoomButton : UIButton = {
         let button = UIButton()
-        button.setTitle("Add Room", for: .normal)
-        button.tintColor = UIColor.white
+        button.setTitle("Add", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(UIColor.gray, for: .highlighted)
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 0.5
+        button.layer.cornerRadius = 4
+        button.titleLabel?.textAlignment = .center
+        return button
+    }()
+    
+    var orderRoomButton : UIButton = {
+        let button = UIButton()
+        button.setTitle("Order", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(UIColor.gray, for: .highlighted)
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 0.5
         button.layer.cornerRadius = 4
@@ -24,7 +37,8 @@ class NewServiceFooter : UIView {
     var completeButton : UIButton = {
         let button = UIButton()
         button.setTitle("Complete", for: .normal)
-        button.tintColor = UIColor.white
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(UIColor.gray, for: .highlighted)
         button.layer.borderColor = UIColor.white.cgColor
         button.layer.borderWidth = 0.5
         button.layer.cornerRadius = 4
@@ -44,11 +58,15 @@ class NewServiceFooter : UIView {
     override func layoutSubviews() {
         
         // Place New Room Button
-        newRoomButton.frame = CGRect(x: 15, y: 5, width: self.frame.width / 2 - 15 - 7.5, height: self.frame.height - 10)
+        newRoomButton.frame = CGRect(x: 15, y: 5, width: self.frame.width / 4 - 15 - 7.5, height: self.frame.height - 15)
         self.addSubview(newRoomButton)
         
+        // Place Order Rooms Button
+        orderRoomButton.frame = CGRect(x: newRoomButton.frame.maxX + 15, y: 5, width: newRoomButton.frame.width, height: newRoomButton.frame.height)
+        self.addSubview(orderRoomButton)
+        
         // Place Complete Button
-        completeButton.frame = CGRect(x: newRoomButton.frame.maxX + 15, y: 5, width: newRoomButton.frame.width, height: newRoomButton.frame.height)
+        completeButton.frame = CGRect(x: self.frame.width - (newRoomButton.frame.width * 2) - 15, y: 5, width: newRoomButton.frame.width * 2, height: newRoomButton.frame.height)
         self.addSubview(completeButton)
         
     }
