@@ -112,6 +112,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E57D63B2087A47A00CCF068 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2E51D487203231770065A602 /* NewServiceCell.swift */,
+				2EFA7C802017A0D500BA6044 /* ServiceCell.swift */,
+				2E8740E52033C10600740F7A /* NewRoomCell.swift */,
+				2E51D485203114EB0065A602 /* RoomCell.swift */,
+				2E6FE80E207B1625005EE1ED /* TemplateCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		2E57D63C2087A48500CCF068 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2ED91461201906D5009870FB /* NewServiceHeader.swift */,
+				2EE934032030EF7B00BCA562 /* ServiceHeader.swift */,
+				2E8656572035210C00CA856B /* NewServiceFooter.swift */,
+				2E1BA21C2082BD0F0073EE1F /* TapperView.swift */,
+				2E16A7522081D6FB005EA575 /* TemplateHeader.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		2E87A215200AA97300F43AE2 = {
 			isa = PBXGroup;
 			children = (
@@ -182,18 +206,10 @@
 		2EFA7C7F2017A0B500BA6044 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				2EFA7C802017A0D500BA6044 /* ServiceCell.swift */,
-				2E51D487203231770065A602 /* NewServiceCell.swift */,
-				2EE934032030EF7B00BCA562 /* ServiceHeader.swift */,
-				2ED91461201906D5009870FB /* NewServiceHeader.swift */,
-				2E51D485203114EB0065A602 /* RoomCell.swift */,
-				2E8740E52033C10600740F7A /* NewRoomCell.swift */,
+				2E57D63C2087A48500CCF068 /* Views */,
+				2E57D63B2087A47A00CCF068 /* Cells */,
 				2E51D483203113160065A602 /* HeadCountVC.swift */,
 				2E37521F203293660055A3A9 /* CustomTextField.swift */,
-				2E8656572035210C00CA856B /* NewServiceFooter.swift */,
-				2E6FE80E207B1625005EE1ED /* TemplateCell.swift */,
-				2E16A7522081D6FB005EA575 /* TemplateHeader.swift */,
-				2E1BA21C2082BD0F0073EE1F /* TapperView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";

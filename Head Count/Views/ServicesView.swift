@@ -37,9 +37,9 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         //settingsButton.tintColor = Global.blueColor
         //self.navigationItem.leftBarButtonItem = settingsButton
         
+        // Place Background Image
         self.backgroundImage.image = UIImage(named: "crowd")
         self.backgroundImage.layer.opacity = 0.6
-        //menu.reloadData()
         
         // Place Table View
         menu.frame = view.frame

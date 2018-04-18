@@ -38,10 +38,11 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         super.viewDidLoad()
         
         self.navigationItem.title = service.location
+        
         if cellIndex == 0 {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(returnToMain))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveOrEditService))
         } else {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(returnToMain))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(saveOrEditService))
         }
         
         // Place Room Table View
@@ -60,6 +61,7 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell : RoomCell = RoomCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID, room: service.rooms[indexPath.row])
+        
         return cell
     }
     
@@ -74,11 +76,11 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerView : ServiceHeader = ServiceHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height / 3), service: self.service, controller: self)
+        
         return headerView
-
     }
     
-    @objc func returnToMain() {
+    @objc func saveOrEditService() {
         
         if cellIndex == 0 {
             Global.arrayOfServices.append(service)
@@ -89,16 +91,5 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
             self.navigationController?.pushViewController(NewServiceView(cellIndex: cellIndex, service: service), animated: true)
         }
     }
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
