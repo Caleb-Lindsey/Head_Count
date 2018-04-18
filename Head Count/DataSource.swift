@@ -11,7 +11,7 @@ struct Global {
     
     // Data
     static var arrayOfServices : [Service] = [Service]()
-    static var templateRooms : [Room] = [Room]()
+    static var templateRooms : Set<Room> = Set<Room>()
     static var serviceFilePath : String = "HeadCountServices.json"
     
     // Theme
@@ -79,26 +79,20 @@ class DataSource {
     
     func getTemplateData() {
         
-        Global.templateRooms = []
-        var templateRooms = Set<String>()
-        
         for service in Global.arrayOfServices {
             
             for room in service.rooms {
                 
-                if !templateRooms.contains(room.title) {
-                    templateRooms.insert(room.title)
-                    
-                    let newRoom = Room(title: room.title)
-                    
-                    if Global.templateRooms == [] {
-                        Global.templateRooms = [newRoom]
-                    } else {
-                        Global.templateRooms.append(newRoom)
-                    }
+                if !Global.templateRooms.contains(room) {
+                    room.headCount = 0
+                    Global.templateRooms.insert(room)
                 }
+                
             }
         }
+        
+        clearTemplateData()
+        
     }
     
     func clearTemplateData() {

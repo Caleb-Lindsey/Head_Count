@@ -13,14 +13,11 @@ class ServiceCell : UITableViewCell {
     var title : String!
     var date : Date!
     var counter : String!
-    var destination : UIViewController!
     
     let backView : UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.darkGray
         view.layer.cornerRadius = 3
-        //view.layer.borderWidth = 0.35
-        //view.layer.borderColor = UIColor.white.cgColor
         view.layer.opacity = 0.8
         return view
     }()
@@ -29,7 +26,6 @@ class ServiceCell : UITableViewCell {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = UIFont(name: "DINCondensed-Bold", size: 22)
-        //label.layer.borderWidth = 0.5
         return label
     }()
     
@@ -38,7 +34,6 @@ class ServiceCell : UITableViewCell {
         label.textColor = UIColor.white
         label.textAlignment = .right
         label.font = UIFont(name: "DamascusLight", size: 18)
-        //label.layer.borderWidth = 0.5
         return label
     }()
     
@@ -55,12 +50,11 @@ class ServiceCell : UITableViewCell {
         return imageView
     }()
     
-    init(style: UITableViewCellStyle, reuseIdentifier: String?, title: String, counter: String, date: Date, destination: UIViewController) {
+    init(style: UITableViewCellStyle, reuseIdentifier: String?, title: String, counter: String, date: Date) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.title = title
         self.date = date
         self.counter = counter
-        self.destination = destination
         self.backgroundColor = UIColor.clear
         self.contentView.backgroundColor = UIColor.clear
         self.selectionStyle = .none

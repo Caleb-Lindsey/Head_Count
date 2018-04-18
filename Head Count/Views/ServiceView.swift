@@ -39,9 +39,9 @@ class ServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         
         self.navigationItem.title = service.location
         if cellIndex == 0 {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(returnToMain))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(returnToMain))
         } else {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(returnToMain))
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(returnToMain))
         }
         
         // Place Room Table View

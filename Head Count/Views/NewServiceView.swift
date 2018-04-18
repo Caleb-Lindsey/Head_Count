@@ -218,9 +218,9 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
                 
             } else {
                 
-                self.service.title = newServiceHeader.titleField.text!
-                self.service.counter = newServiceHeader.counterField.text!
-                self.service.location = newServiceHeader.locationField.text!
+                self.service.title = newServiceHeader.titleField.text!.trimmingCharacters(in: .whitespaces)
+                self.service.counter = newServiceHeader.counterField.text!.trimmingCharacters(in: .whitespaces)
+                self.service.location = newServiceHeader.locationField.text!.trimmingCharacters(in: .whitespaces)
                 self.service.date = newServiceHeader.datePicker.date
                 self.service.rooms = arrayOfNewRooms
                 

@@ -12,7 +12,7 @@ class TemplateView : HeadCountVC, UITableViewDelegate, UITableViewDataSource {
     
     var roomsToUse : [Room] = [Room]()
     
-    let tableView : UITableView = {
+    let templateTable : UITableView = {
         let table = UITableView()
         table.backgroundColor = UIColor.clear
         table.allowsMultipleSelection = true
@@ -23,22 +23,26 @@ class TemplateView : HeadCountVC, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .done, target: self, action: #selector(importTemplate))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(importTemplate))
         
         // Place TableView
-        tableView.frame = view.frame
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(TemplateCell.self, forCellReuseIdentifier: "CellID")
-        self.view.addSubview(tableView)
+        templateTable.frame = view.frame
+        templateTable.delegate = self
+        templateTable.dataSource = self
+        templateTable.register(TemplateCell.self, forCellReuseIdentifier: "CellID")
+        self.view.addSubview(templateTable)
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : TemplateCell = TemplateCell(reuseIdentifier: "CellID", room: Global.templateRooms[indexPath.row])
+        
+        let roomArray = Array(Global.templateRooms)
+        let cell : TemplateCell = TemplateCell(reuseIdentifier: "CellID", room: roomArray[indexPath.row])
+        
         if cell.room.isSelectedForTemplate {
             cell.sideView.backgroundColor = Global.blueColor
         }
+        
         return cell
     }
     
@@ -51,7 +55,9 @@ class TemplateView : HeadCountVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         let myView : TemplateHeader = TemplateHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 65))
+        
         return myView
     }
     
@@ -66,36 +72,21 @@ class TemplateView : HeadCountVC, UITableViewDelegate, UITableViewDataSource {
     @objc func importTemplate() {
         
         for room in Global.templateRooms {
+            
             if room.isSelectedForTemplate {
+                
                 if roomsToUse == [] {
                     roomsToUse = [room]
                 } else {
                     roomsToUse.append(room)
                 }
+                
             }
+            
         }
         
         self.navigationController?.pushViewController(NewServiceView(templateArray: roomsToUse), animated: true)
         
-        
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
