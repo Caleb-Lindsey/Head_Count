@@ -228,7 +228,11 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
                 self.navigationController?.pushViewController(ServiceView(service: newService, cellIndex: 0), animated: true)
             } else {
                 
-                self.service = newService
+                self.service.title = newService.title
+                self.service.counter = newService.counter
+                self.service.location = newService.location
+                self.service.rooms = newService.rooms
+                
                 dataHandle.saveServicesToFile(services: Global.arrayOfServices)
                 self.navigationController?.pushViewController(ServicesView(), animated: true)
                 
