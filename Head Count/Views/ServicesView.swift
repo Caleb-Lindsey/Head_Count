@@ -25,6 +25,7 @@ class ServicesView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         
         menu.reloadData()
         dataHandle.getTemplateData()
+        Global.arrayOfServices = dataHandle.orderServiceArrayByDate(array: &Global.arrayOfServices)
         self.navigationItem.hidesBackButton = true
         
     }

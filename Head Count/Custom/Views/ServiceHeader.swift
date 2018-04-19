@@ -120,9 +120,8 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate, MFMailComp
         
         let mailController : MFMailComposeViewController = MFMailComposeViewController()
         mailController.mailComposeDelegate = self
-        mailController.setSubject("Count: \(titleLabel.text!)")
+        mailController.setSubject("HeadCount: \(titleLabel.text!)")
         mailController.setMessageBody(self.service.formatForDelivery(), isHTML: false)
-        
         self.viewController.present(mailController, animated: true, completion: nil)
         
     }

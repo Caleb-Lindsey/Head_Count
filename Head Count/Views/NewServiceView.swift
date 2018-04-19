@@ -231,6 +231,7 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
                 self.service.title = newService.title
                 self.service.counter = newService.counter
                 self.service.location = newService.location
+                self.service.date = newService.date
                 self.service.rooms = newService.rooms
                 
                 dataHandle.saveServicesToFile(services: Global.arrayOfServices)
