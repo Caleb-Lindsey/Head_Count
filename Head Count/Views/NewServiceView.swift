@@ -90,7 +90,6 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell : NewRoomCell = NewRoomCell(style: UITableViewCellStyle.default, reuseIdentifier: cellID, room: arrayOfNewRooms[indexPath.row], viewController: self)
         cell.roomtitle.text = arrayOfNewRooms[indexPath.row].title
         
@@ -114,7 +113,6 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        
         if tableView.isEditing {
             return .none
         } else {
@@ -123,7 +121,6 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
         if editingStyle == .delete {
             
             arrayOfNewRooms.remove(at: indexPath.row)
@@ -141,11 +138,9 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        
         let movedObject = self.arrayOfNewRooms[sourceIndexPath.row]
         arrayOfNewRooms.remove(at: sourceIndexPath.row)
         arrayOfNewRooms.insert(movedObject, at: destinationIndexPath.row)
-        
     }
     
     func fillRoomsToFive() {
@@ -176,7 +171,6 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     @objc func completeService() {
         
-        let alertTitle : String = "Missing Requiered Fields"
         var alertMessage : String = ""
         var allRoomsEmpty : Bool = true
 
@@ -192,36 +186,22 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
             alertMessage += "\n- Missing event location."
         }
         
-        for count in 0...arrayOfNewRooms.count - 1 {
-            
-            let cell : NewRoomCell =  self.newServiceTable.cellForRow(at: IndexPath(row: count, section: 0)) as! NewRoomCell
-            
-            if cell.roomtitle.text != "" {
-                allRoomsEmpty = false
+        var arrayOfRoomsInUse : [Room] = []
+        if arrayOfNewRooms != [] {
+            for count in 0...arrayOfNewRooms.count - 1 {
+                
+                if arrayOfNewRooms[count].title != "" {
+                    allRoomsEmpty = false
+                    arrayOfRoomsInUse.append(arrayOfNewRooms[count])
+                }
             }
-            
         }
         
         if allRoomsEmpty {
             alertMessage += "\n- No rooms listed."
         }
-
+        
         if alertMessage.isEmpty {
-            
-            var arrayOfRoomsInUse : [Room] = []
-            
-            var count : Int = 0
-            for room in arrayOfNewRooms {
-                
-                let cell : NewRoomCell = self.newServiceTable.cellForRow(at: IndexPath(row: count, section: 0)) as! NewRoomCell
-                cell.applyFieldsToRoom()
-                
-                if room.title != "" {
-                    arrayOfRoomsInUse.append(room)
-                }
-                count += 1
-            }
-            
             let newService : Service = Service(title: newServiceHeader.titleField.text!.trimmingCharacters(in: .whitespaces), date: newServiceHeader.datePicker.date, rooms: arrayOfRoomsInUse, counter: newServiceHeader.counterField.text!.trimmingCharacters(in: .whitespaces), location: newServiceHeader.locationField.text!.trimmingCharacters(in: .whitespaces))
             
             if cellIndex == 0 {
@@ -241,6 +221,7 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
             
         } else {
             
+            let alertTitle : String = "Missing Requiered Fields"
             let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)

@@ -44,12 +44,12 @@ class Service : Codable {
         
         for thisRoom in self.rooms {
             
-            let line : String = "     • \(thisRoom.title): \(thisRoom.headCount)\n\n"
+            let line : String = "     • \(thisRoom.title): \(thisRoom.headCount)\n"
             formattedService += line
             
         }
         
-        let total : String = "TOTAL: \(self.getTotal())"
+        let total : String = "\nTOTAL: \(self.getTotal())"
         formattedService += total
         
         return formattedService

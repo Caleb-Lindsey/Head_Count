@@ -8,7 +8,6 @@
 import UIKit
 
 struct Global {
-    
     // Data
     static var arrayOfServices : [Service] = [Service]()
     static var templateRooms : Set<Room> = Set<Room>()
@@ -19,7 +18,6 @@ struct Global {
     static var blueColor = UIColor(red: 76/255.0, green: 106/255.0, blue: 255/255.0, alpha: 1)
     static var offWhiteColor = UIColor(red: 200/255.0, green: 200/255.0, blue: 200/255.0, alpha: 1)
     static var headerFont : UIFont = UIFont(name: "DINCondensed-Bold", size: 45)!
-    
 }
 
 class DataSource {
@@ -42,7 +40,6 @@ class DataSource {
             print("Failed to read from file...", error)
             return []
         }
-        
     }
     
     func saveServicesToFile(services: [Service]) {
@@ -93,7 +90,6 @@ class DataSource {
         }
         
         clearTemplateData()
-        
     }
     
     func clearTemplateData() {

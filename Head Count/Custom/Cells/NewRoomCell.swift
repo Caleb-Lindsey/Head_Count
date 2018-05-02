@@ -147,19 +147,7 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
         })
         
     }
-    
-    func applyFieldsToRoom() {
         
-        if self.roomtitle.text != "" {
-            self.room.title = self.roomtitle.text!
-        }
-        
-        if self.roomCount.text != "" {
-            self.room.headCount = Int(self.roomCount.text!)!
-        }
-    
-    }
-    
     override func willTransition(to state: UITableViewCellStateMask) {
         super.willTransition(to: state)
     }
