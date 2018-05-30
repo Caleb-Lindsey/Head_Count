@@ -37,7 +37,6 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
     
     init(style: UITableViewCellStyle, reuseIdentifier: String?, room: Room, viewController : NewServiceView) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         self.room = room
         self.viewController = viewController
         self.selectionStyle = .none
@@ -67,11 +66,9 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
             roomCount.text = "\(room.headCount)"
         }
         contentView.addSubview(roomCount)
-        
     }
     
     func addDoneButtonOnKeyboard() {
-        
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 25))
         doneToolbar.barStyle = UIBarStyle.blackTranslucent
         
@@ -91,21 +88,16 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
         
         self.roomCount.inputAccessoryView = doneToolbar
         self.roomtitle.inputAccessoryView = doneToolbar
-        
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
         if textField == roomtitle {
             self.room.title = roomtitle.text!
         } else {
-            
             if roomCount.text != "" {
                 self.room.headCount = Int(roomCount.text!)!
             }
-            
         }
-        
     }
     
     @objc func doneButtonAction() {
@@ -114,7 +106,6 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        
         let pointInTable : CGPoint = roomtitle.superview!.convert(roomtitle.frame.origin, to: viewController.newServiceTable)
         var contentOffset : CGPoint = viewController.newServiceTable.contentOffset
         contentOffset.y = pointInTable.y
@@ -127,14 +118,11 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
         
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
             self.viewController.newServiceTable.contentOffset = contentOffset
-        }, completion: nil)
-        
+        })
         return true
-        
     }
     
     @objc func openTapper() {
-        
         self.viewController.navigationItem.hidesBackButton = true
         self.endEditing(true)
         
@@ -145,11 +133,9 @@ class NewRoomCell : UITableViewCell, UITextFieldDelegate {
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
             tapperView.frame.origin.y = (self.viewController.navigationController?.navigationBar.frame.maxY)!
         })
-        
     }
         
     override func willTransition(to state: UITableViewCellStateMask) {
         super.willTransition(to: state)
     }
-    
 }

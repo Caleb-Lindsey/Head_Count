@@ -50,7 +50,6 @@ class NewServiceCell : UITableViewCell {
     }
     
     override func layoutSubviews() {
-        
         let labelHeight = contentView.frame.height / 3
         
         // Place Back View
@@ -64,17 +63,13 @@ class NewServiceCell : UITableViewCell {
         // Place SubLabe
         subLabel.frame = CGRect(x: 15, y: titleLabel.frame.maxY, width: titleLabel.frame.width, height: backView.frame.height - labelHeight - 10)
         backView.addSubview(subLabel)
-        
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        
         if highlighted {
             backView.backgroundColor = UIColor.gray
         } else {
             backView.backgroundColor = UIColor.darkGray
         }
-        
     }
-    
 }

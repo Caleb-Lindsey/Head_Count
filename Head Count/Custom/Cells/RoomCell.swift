@@ -27,7 +27,6 @@ class RoomCell : UITableViewCell {
     
     init(style: UITableViewCellStyle, reuseIdentifier: String?, room: Room) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         self.room = room
         self.selectionStyle = .none
         self.contentView.layer.borderWidth = 0.35
@@ -39,7 +38,7 @@ class RoomCell : UITableViewCell {
     }
     
     override func layoutSubviews() {
-        
+
         // Place Room Title
         roomtitle.frame = CGRect(x: 10, y: 0, width: self.contentView.frame.width * (2/3) - 10, height: self.contentView.frame.height)
         roomtitle.text = self.room.title
@@ -49,7 +48,5 @@ class RoomCell : UITableViewCell {
         roomCount.frame = CGRect(x: self.contentView.frame.width - self.contentView.frame.height - 15, y: 0, width: self.contentView.frame.height, height: self.contentView.frame.height)
         roomCount.text = "\(self.room.headCount)"
         self.contentView.addSubview(roomCount)
-        
     }
-    
 }

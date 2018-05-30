@@ -10,6 +10,7 @@ import UIKit
 
 class TapperView : UIView {
     
+    var room: Room!
     var roomCell : NewRoomCell!
     var viewController : UIViewController!
     var navHeight : CGFloat!
@@ -84,7 +85,6 @@ class TapperView : UIView {
         } else {
             self.count = 0
         }
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -116,53 +116,37 @@ class TapperView : UIView {
         // Place Cancel Button
         cancelButton.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
         self.addSubview(cancelButton)
-        
     }
     
     @objc func incrementByOne() {
-        
         count = count + 1
         numberLabel.text = "\((count)!)"
-        
     }
     
     @objc func decrementByOne() {
-        
         if count > 0 {
-            
             count = count - 1
             numberLabel.text = "\((count)!)"
-            
         }
-        
     }
     
     @objc func clearCount() {
-        
         count = 0
         numberLabel.text = "\((count)!)"
     }
     
     @objc func useCount() {
-        
         self.roomCell.roomCount.text = "\((count)!)"
+        self.roomCell.room.headCount = count
         dismissTapperView()
-        
     }
     
     @objc func dismissTapperView() {
-        
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-            
             self.frame.origin.y = self.viewController.view.frame.height
-            
         }) { (finished : Bool) in
-            
             self.removeFromSuperview()
             self.viewController.navigationItem.hidesBackButton = false
-            
         }
-        
     }
-    
 }

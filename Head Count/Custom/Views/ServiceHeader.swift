@@ -99,31 +99,25 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate, MFMailComp
         totalLabel.frame = CGRect(x: 15, y: self.frame.height - 50, width: self.frame.width / 4, height: 50)
         totalLabel.text = "Total: \(self.service.getTotal())"
         self.addSubview(totalLabel)
-        
     }
     
     @objc func sendMessage() {
-        
-        if (MFMessageComposeViewController.canSendText()) {
-            
+        if MFMessageComposeViewController.canSendText() {
             let controller = MFMessageComposeViewController()
             controller.body = self.service.formatForDelivery()
             controller.subject = titleLabel.text
             controller.recipients = []
             controller.messageComposeDelegate = self
             viewController.present(controller, animated: true, completion: nil)
-            
         }
     }
     
     @objc func sendEmail() {
-        
         let mailController : MFMailComposeViewController = MFMailComposeViewController()
         mailController.mailComposeDelegate = self
         mailController.setSubject("HeadCount: \(titleLabel.text!)")
         mailController.setMessageBody(self.service.formatForDelivery(), isHTML: false)
         self.viewController.present(mailController, animated: true, completion: nil)
-        
     }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
@@ -133,5 +127,4 @@ class ServiceHeader : UIView, MFMessageComposeViewControllerDelegate, MFMailComp
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
-
 }

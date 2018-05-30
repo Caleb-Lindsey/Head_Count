@@ -65,7 +65,6 @@ class NewServiceHeader : UIView, UITextFieldDelegate {
         // Place Date Picker
         datePicker.frame = CGRect(x: 15, y: locationField.frame.maxY + 5, width: locationField.frame.width, height: self.frame.height - (locationField.frame.height * 3) - 15 - 5 - 5 - 5)
         self.addSubview(datePicker)
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -76,23 +75,4 @@ class NewServiceHeader : UIView, UITextFieldDelegate {
         textField.endEditing(true)
         return false
     }
-    
-    
-    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

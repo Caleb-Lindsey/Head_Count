@@ -68,7 +68,5 @@ class NewServiceFooter : UIView {
         // Place Complete Button
         completeButton.frame = CGRect(x: self.frame.width - (newRoomButton.frame.width * 2) - 15, y: 5, width: newRoomButton.frame.width * 2, height: newRoomButton.frame.height)
         self.addSubview(completeButton)
-        
     }
-    
 }

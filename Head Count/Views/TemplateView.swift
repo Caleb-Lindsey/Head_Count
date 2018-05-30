@@ -31,18 +31,15 @@ class TemplateView : HeadCountVC, UITableViewDelegate, UITableViewDataSource {
         templateTable.dataSource = self
         templateTable.register(TemplateCell.self, forCellReuseIdentifier: "CellID")
         self.view.addSubview(templateTable)
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let roomArray = Array(Global.templateRooms)
         let cell : TemplateCell = TemplateCell(reuseIdentifier: "CellID", room: roomArray[indexPath.row])
         
         if cell.room.isSelectedForTemplate {
             cell.sideView.backgroundColor = Global.blueColor
         }
-        
         return cell
     }
     
@@ -55,9 +52,7 @@ class TemplateView : HeadCountVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         let myView : TemplateHeader = TemplateHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 65))
-        
         return myView
     }
     
@@ -70,25 +65,16 @@ class TemplateView : HeadCountVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func importTemplate() {
-        
         for room in Global.templateRooms {
-            
             if room.isSelectedForTemplate {
-                
                 let newRoom : Room = Room(title: room.title)
-                
                 if roomsToUse == [] {
                     roomsToUse = [newRoom]
                 } else {
                     roomsToUse.append(newRoom)
                 }
-                
             }
-            
         }
-        
         self.navigationController?.pushViewController(NewServiceView(templateArray: roomsToUse), animated: true)
-        
     }
-    
 }

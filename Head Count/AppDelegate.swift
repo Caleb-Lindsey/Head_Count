@@ -25,7 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let homeController : UIViewController = UINavigationController(rootViewController: ServicesView())
         window?.rootViewController = homeController
-        
         return true
     }
 
@@ -97,8 +96,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
-    
-
 }
-

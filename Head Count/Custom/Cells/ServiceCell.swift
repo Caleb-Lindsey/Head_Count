@@ -66,7 +66,6 @@ class ServiceCell : UITableViewCell {
     }
     
     override func layoutSubviews() {
-        
         let labelHeight = contentView.frame.height / 3
         
         // Place Back View
@@ -91,16 +90,13 @@ class ServiceCell : UITableViewCell {
         // Place Chevron Image
         chevronImage.frame = CGRect(x: backView.frame.width - 18 - 5, y: backView.frame.height / 2 - 5, width: 18, height: 18)
         backView.addSubview(chevronImage)
-        
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        
         if highlighted {
             backView.backgroundColor = UIColor.gray
         } else {
             backView.backgroundColor = UIColor.darkGray
         }
     }
-    
 }

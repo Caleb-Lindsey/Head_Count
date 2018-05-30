@@ -25,5 +25,4 @@ class Room : Codable, Hashable {
     static func == (lhs: Room, rhs: Room) -> Bool {
         return lhs.title == rhs.title
     }
-    
 }

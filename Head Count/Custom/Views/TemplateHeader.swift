@@ -29,11 +29,8 @@ class TemplateHeader : UIView {
     }
     
     override func layoutSubviews() {
-        
         // Place Message Label
         messageLabel.frame = CGRect(x: 15, y: 0, width: self.frame.width - 30, height: self.frame.height)
         self.addSubview(messageLabel)
-        
     }
-    
 }

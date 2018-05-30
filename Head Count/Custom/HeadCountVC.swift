@@ -25,7 +25,5 @@ class HeadCountVC : UIViewController {
         // Place Background Image
         backgroundImage.frame = view.frame
         self.view.addSubview(backgroundImage)
-        
     }
-    
 }

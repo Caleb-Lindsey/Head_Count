@@ -25,34 +25,25 @@ class Service : Codable {
     }
     
     func getTotal() -> Int {
-        
         var total : Int = 0
         
         for thisRoom in self.rooms {
             total += thisRoom.headCount
         }
-        
         return total
     }
     
     func formatForDelivery() -> String {
-        
         var formattedService : String = ""
         let formattedDate : String = DataSource().getString(fromDate: date!)
         let greeting : String = "Here's the count for \(title!).\nCounter: \(counter!)\nLocation: \(location!)\nDate: \(formattedDate)\n\n"
         formattedService += greeting
-        
         for thisRoom in self.rooms {
-            
             let line : String = "     • \(thisRoom.title): \(thisRoom.headCount)\n"
             formattedService += line
-            
         }
-        
         let total : String = "\nTOTAL: \(self.getTotal())"
         formattedService += total
-        
         return formattedService
     }
-    
 }

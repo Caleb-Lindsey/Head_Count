@@ -35,14 +35,12 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     init(cellIndex: Int, service: Service) {
         super.init(nibName: nil, bundle: nil)
-        
         self.cellIndex = cellIndex
         self.service = service
     }
     
     init(templateArray: [Room]) {
         super.init(nibName: nil, bundle: nil)
-
         self.cellIndex = 0
         self.arrayOfNewRooms = templateArray
     }
@@ -56,20 +54,16 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         
         if cellIndex == 0 {
             self.navigationItem.title = "New Event"
-            
             if arrayOfNewRooms.count < 5 {
                 fillRoomsToFive()
             }
-            
         } else {
-            
             self.navigationItem.title = service.title
             self.arrayOfNewRooms = service.rooms
             self.newServiceHeader.titleField.text = service.title
             self.newServiceHeader.counterField.text = service.counter
             self.newServiceHeader.locationField.text = service.location
             self.newServiceHeader.datePicker.date = service.date
-            
         }
         
         // Place New Service Table
@@ -82,7 +76,6 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         // Place Footer
         self.serviceFooter.frame = CGRect(x: 0, y: 0, width: newServiceTable.frame.width, height: 65)
         self.newServiceTable.tableFooterView = serviceFooter
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -96,7 +89,6 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         if arrayOfNewRooms[indexPath.row].headCount != 0 {
             cell.roomCount.text = "\(arrayOfNewRooms[indexPath.row].headCount)"
         }
-        
         return cell
     }
     
@@ -122,10 +114,8 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
             arrayOfNewRooms.remove(at: indexPath.row)
             tableView.reloadData()
-            
         }
     }
     
@@ -144,33 +134,26 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
     }
     
     func fillRoomsToFive() {
-        
         while arrayOfNewRooms.count < 5 {
             let newRoom : Room = Room(title: "")
             arrayOfNewRooms.append(newRoom)
         }
-        
     }
     
     @objc func addNewRoom() {
-        
         let newRoom : Room = Room(title: "")
         arrayOfNewRooms.append(newRoom)
         newServiceTable.reloadData()
-        
     }
     
     @objc func toggleEditMode() {
-        
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
             self.newServiceTable.isEditing = !self.newServiceTable.isEditing
         }) { (finished : Bool) in
         }
-        
     }
     
     @objc func completeService() {
-        
         var alertMessage : String = ""
         var allRoomsEmpty : Bool = true
 
@@ -189,7 +172,6 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         var arrayOfRoomsInUse : [Room] = []
         if arrayOfNewRooms != [] {
             for count in 0...arrayOfNewRooms.count - 1 {
-                
                 if arrayOfNewRooms[count].title != "" {
                     allRoomsEmpty = false
                     arrayOfRoomsInUse.append(arrayOfNewRooms[count])
@@ -203,7 +185,7 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
         
         if alertMessage.isEmpty {
             let newService : Service = Service(title: newServiceHeader.titleField.text!.trimmingCharacters(in: .whitespaces), date: newServiceHeader.datePicker.date, rooms: arrayOfRoomsInUse, counter: newServiceHeader.counterField.text!.trimmingCharacters(in: .whitespaces), location: newServiceHeader.locationField.text!.trimmingCharacters(in: .whitespaces))
-            
+
             if cellIndex == 0 {
                 self.navigationController?.pushViewController(ServiceView(service: newService, cellIndex: 0), animated: true)
             } else {
@@ -216,33 +198,25 @@ class NewServiceView : HeadCountVC, UITableViewDataSource, UITableViewDelegate {
                 
                 dataHandle.saveServicesToFile(services: Global.arrayOfServices)
                 self.navigationController?.pushViewController(ServicesView(), animated: true)
-                
             }
             
         } else {
-            
             let alertTitle : String = "Missing Requiered Fields"
             let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-            
         }
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
         let backItem = UIBarButtonItem()
         backItem.title = "Edit"
         navigationItem.backBarButtonItem = backItem
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         let backItem = UIBarButtonItem()
         backItem.title = "Events"
         navigationItem.backBarButtonItem = backItem
-        
     }
 }
